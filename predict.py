@@ -33,6 +33,7 @@ plt.rcParams['axes.unicode_minus'] = False
 def generate_professional_medical_data(save_path, sample_size=100000):
     """生成专业的综合医疗检查数据并保存"""
     print("="*60)
+    print("="*60)
     print(f"0. 生成{sample_size}条专业医疗检查数据")
     print("="*60)
     
