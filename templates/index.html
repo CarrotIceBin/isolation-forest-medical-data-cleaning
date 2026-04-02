@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医疗数据离群值检测系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: #4ECDC4;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #4ECDC4;
+            border-color: #4ECDC4;
+        }
+        .btn-primary:hover {
+            background-color: #45B7D1;
+            border-color: #45B7D1;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            min-width: 300px;
+        }
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .spinner-border {
+            width: 4rem;
+            height: 4rem;
+        }
+        .result-section {
+            display: none;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 40px;
+        }
+        .card {
+            margin-bottom: 30px;
+        }
+        .result-section {
+            padding: 20px 0;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stats-card h4 {
+            margin-bottom: 10px;
+        }
+        .stats-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary">医疗数据离群值检测系统</h1>
+            <p class="lead">专业分析医疗数据中的离群值，提供详细的检测结果和可视化分析</p>
+        </div>
+        
+        <!-- 控制面板 -->
+        <div class="card mb-5">
+            <div class="card-header">
+                分析控制
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">分析类型</label>
+                            <select class="form-select" id="analysisType">
+                                <option value="full">完整分析</option>
+                                <option value="quick">快速分析</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">模型选择</label>
+                            <select class="form-select" id="modelSelect">
+                                <option value="all">所有模型</option>
+                                <option value="isolation_forest">孤立森林</option>
+                                <option value="lof">局部离群因子</option>
+                                <option value="one_class_svm">One-Class SVM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button id="startAnalysis" class="btn btn-primary btn-lg w-100">开始分析</button>
+            </div>
+        </div>
+        
+        <!-- 加载遮罩 -->
+        <div class="loading-overlay" id="loadingOverlay"></div>
+        
+        <!-- 加载状态 -->
+        <div class="loading" id="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">分析中...</span>
+            </div>
+            <p class="mt-2">正在分析数据，请稍候...</p>
+        </div>
+        
+        <!-- 结果展示 -->
+        <div class="result-section" id="resultSection">
+            <!-- 统计信息 -->
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <h4>总样本数</h4>
+                        <div class="stats-value" id="totalSamples">0</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <h4>异常样本数</h4>
+                        <div class="stats-value" id="abnormalCount">0</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <h4>异常比例</h4>
+                        <div class="stats-value" id="abnormalRatio">0%</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <h4>分析时间</h4>
+                        <div class="stats-value" id="analysisTimeValue" style="font-size: 2rem; font-weight: bold;"></div>
+                        <div class="stats-algorithm" id="analysisAlgorithm" style="font-size: 1rem; margin-top: 5px;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 模型性能 -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    模型性能对比
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="modelPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 离群值检测结果 -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    离群值检测结果
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="outlierDetectionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 医学符合性验证 -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    医学符合性验证
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="clinicalValidationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 数据对比分析 -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    数据对比分析
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- 算法性能对比 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    算法性能对比
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="algorithmComparisonChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 模型准确率对比 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    模型准确率对比
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="modelPerformanceBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- 大数据指标对比 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    大数据指标对比
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="largeDataBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 小数据指标对比 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    小数据指标对比
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="smallDataBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 详细数据 -->
+            <div class="card">
+                <div class="card-header">
+                    详细检测结果
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>患者ID</th>
+                                    <th>年龄</th>
+                                    <th>性别</th>
+                                    <th>血压</th>
+                                    <th>胆固醇</th>
+                                    <th>血糖</th>
+                                    <th>检测结果</th>
+                                    <th>异常得分</th>
+                                    <th>医学评估</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultTable">
+                                <!-- 数据将通过JavaScript动态填充 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 图表实例变量
+        let modelPerformanceChart, outlierDetectionChart, clinicalValidationChart, algorithmComparisonChart, modelPerformanceBarChart, largeDataBarChart, smallDataBarChart;
+        
+        // 销毁图表实例的函数
+        function destroyCharts() {
+            if (modelPerformanceChart) {
+                modelPerformanceChart.destroy();
+            }
+            if (outlierDetectionChart) {
+                outlierDetectionChart.destroy();
+            }
+            if (clinicalValidationChart) {
+                clinicalValidationChart.destroy();
+            }
+            if (algorithmComparisonChart) {
+                algorithmComparisonChart.destroy();
+            }
+            if (modelPerformanceBarChart) {
+                modelPerformanceBarChart.destroy();
+            }
+            if (largeDataBarChart) {
+                largeDataBarChart.destroy();
+            }
+            if (smallDataBarChart) {
+                smallDataBarChart.destroy();
+            }
+        }
+        
+        document.getElementById('startAnalysis').addEventListener('click', function() {
+            // 显示加载状态和遮罩
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('loadingOverlay').style.display = 'block';
+            document.getElementById('resultSection').style.display = 'none';
+            
+            // 销毁旧的图表实例
+            destroyCharts();
+            
+            // 获取分析参数
+            const analysisType = document.getElementById('analysisType').value;
+            const modelSelect = document.getElementById('modelSelect').value;
+            
+            // 调用后端API
+            fetch('http://localhost:5000/api/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    analysisType: analysisType,
+                    modelSelect: modelSelect
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 隐藏加载状态和遮罩
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('loadingOverlay').style.display = 'none';
+                
+                if (data.success) {
+                    // 显示结果
+                    document.getElementById('resultSection').style.display = 'block';
+                    
+                    // 填充统计信息
+                    document.getElementById('totalSamples').textContent = data.data.totalSamples.toLocaleString();
+                    document.getElementById('abnormalCount').textContent = data.data.abnormalCount.toLocaleString();
+                    document.getElementById('abnormalRatio').textContent = data.data.abnormalRatio;
+                    
+                    // 显示使用的算法和时间
+                    if (modelSelect === 'all' && data.data.algorithmTimes) {
+                        // 当选择所有模型时，显示三个算法的具体时间（中文）
+                        const algorithmTimes = data.data.algorithmTimes;
+                        let timesHTML = '';
+                        const algorithms = [
+                            { en: 'Isolation Forest', zh: '孤立森林' },
+                            { en: 'LOF', zh: '局部离群因子' },
+                            { en: 'One-Class SVM', zh: 'One-Class SVM' }
+                        ];
+                        algorithms.forEach(algorithm => {
+                            if (algorithmTimes[algorithm.en] !== undefined) {
+                                timesHTML += `${algorithm.zh}: ${algorithmTimes[algorithm.en].toFixed(2)}s<br>`;
+                            }
+                        });
+                        document.getElementById('analysisTimeValue').innerHTML = '';
+                        document.getElementById('analysisAlgorithm').innerHTML = timesHTML;
+                    } else if (data.data.algorithmTimes) {
+                        // 当选择单个模型时，显示算法名称和时间
+                        const modelMap = {
+                            'isolation_forest': '孤立森林',
+                            'lof': '局部离群因子',
+                            'one_class_svm': 'One-Class SVM',
+                            'all': '所有算法'
+                        };
+                        const algorithmMap = {
+                            'isolation_forest': 'Isolation Forest',
+                            'lof': 'LOF',
+                            'one_class_svm': 'One-Class SVM'
+                        };
+                        const algorithmName = algorithmMap[modelSelect];
+                        const algorithmTime = data.data.algorithmTimes[algorithmName];
+                        
+                        if (algorithmTime !== undefined) {
+                            document.getElementById('analysisTimeValue').textContent = `${algorithmTime.toFixed(2)}s`;
+                            document.getElementById('analysisAlgorithm').textContent = `算法: ${modelMap[modelSelect] || '所有算法'}`;
+                        } else {
+                            document.getElementById('analysisTimeValue').innerHTML = '';
+                            document.getElementById('analysisAlgorithm').textContent = `算法: ${modelMap[modelSelect] || '所有算法'}`;
+                        }
+                    }
+                    
+                    // 绘制模型性能图表
+                    modelPerformanceChart = drawModelPerformanceChart(data.data.modelPerformance, modelSelect);
+                    
+                    // 绘制离群值检测结果图表
+                    outlierDetectionChart = drawOutlierDetectionChart(data.data.outlierDetection, modelSelect);
+                    
+                    // 绘制医学符合性验证图表
+                    clinicalValidationChart = drawClinicalValidationChart(data.data.clinicalValidation, modelSelect);
+                    
+                    // 绘制算法性能对比柱状图
+                    algorithmComparisonChart = drawAlgorithmComparisonChart(data.data, modelSelect);
+                    
+                    // 绘制详细数据柱状图
+                    modelPerformanceBarChart = drawModelPerformanceBarChart(data.data, modelSelect);
+                    largeDataBarChart = drawLargeDataBarChart(data.data.largeDataMetrics);
+                    smallDataBarChart = drawSmallDataBarChart(data.data.smallDataMetrics);
+                    
+                    // 填充表格数据
+                    populateResultTable(data.data.detailedResults);
+                } else {
+                    // 显示错误信息
+                    alert('分析失败: ' + data.error);
+                }
+            })
+            .catch(error => {
+                // 隐藏加载状态和遮罩
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('loadingOverlay').style.display = 'none';
+                alert('API调用失败: ' + error.message);
+            });
+        });
+        
+        function drawModelPerformanceChart(data, modelSelect) {
+            const ctx = document.getElementById('modelPerformanceChart').getContext('2d');
+            
+            // 根据模型选择过滤数据
+            let labels, accuracy, f1Score;
+            if (modelSelect && modelSelect !== 'all') {
+                const modelMap = {
+                    'isolation_forest': 'Isolation Forest',
+                    'lof': 'LOF',
+                    'one_class_svm': 'One-Class SVM'
+                };
+                const selectedModel = modelMap[modelSelect];
+                const index = data.labels.indexOf(selectedModel);
+                if (index !== -1) {
+                    labels = [selectedModel];
+                    accuracy = [data.accuracy[index]];
+                    f1Score = [data.f1Score[index]];
+                } else {
+                    labels = data.labels;
+                    accuracy = data.accuracy;
+                    f1Score = data.f1Score;
+                }
+            } else {
+                labels = data.labels;
+                accuracy = data.accuracy;
+                f1Score = data.f1Score;
+            }
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '准确率',
+                        data: accuracy,
+                        backgroundColor: '#4ECDC4',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                    }, {
+                        label: 'F1分数',
+                        data: f1Score,
+                        backgroundColor: '#FF6B6B',
+                        borderColor: '#FF6B6B',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#4ECDC4',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(4);
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const model = labels[index];
+                            alert(`您点击了 ${model} 模型\n准确率: ${accuracy[index].toFixed(4)}\nF1分数: ${f1Score[index].toFixed(4)}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        function drawOutlierDetectionChart(data, modelSelect) {
+            const ctx = document.getElementById('outlierDetectionChart').getContext('2d');
+            
+            // 根据模型选择过滤数据
+            let labels, counts;
+            if (modelSelect && modelSelect !== 'all') {
+                const modelMap = {
+                    'isolation_forest': 'Isolation Forest',
+                    'lof': 'LOF',
+                    'one_class_svm': 'One-Class SVM'
+                };
+                const selectedModel = modelMap[modelSelect];
+                const index = data.labels.indexOf(selectedModel);
+                if (index !== -1) {
+                    labels = [selectedModel];
+                    counts = [data.counts[index]];
+                } else {
+                    labels = data.labels;
+                    counts = data.counts;
+                }
+            } else {
+                labels = data.labels;
+                counts = data.counts;
+            }
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '检测到的离群值数量',
+                        data: counts,
+                        backgroundColor: '#45B7D1',
+                        borderColor: '#45B7D1',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(69, 183, 209, 0.8)',
+                        hoverBorderColor: 'rgba(69, 183, 209, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#45B7D1',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const model = labels[index];
+                            const count = counts[index];
+                            alert(`您点击了 ${model} 模型\n检测到的离群值数量: ${count.toLocaleString()}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        function drawClinicalValidationChart(data, modelSelect) {
+            const ctx = document.getElementById('clinicalValidationChart').getContext('2d');
+            
+            // 根据模型选择过滤数据
+            let labels, plausible, implausible;
+            if (modelSelect && modelSelect !== 'all') {
+                const modelMap = {
+                    'isolation_forest': 'Isolation Forest',
+                    'lof': 'LOF',
+                    'one_class_svm': 'One-Class SVM'
+                };
+                const selectedModel = modelMap[modelSelect];
+                const index = data.labels.indexOf(selectedModel);
+                if (index !== -1) {
+                    labels = [selectedModel];
+                    plausible = [data.plausible[index]];
+                    implausible = [data.implausible[index]];
+                } else {
+                    labels = data.labels;
+                    plausible = data.plausible;
+                    implausible = data.implausible;
+                }
+            } else {
+                labels = data.labels;
+                plausible = data.plausible;
+                implausible = data.implausible;
+            }
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '医学合理离群值',
+                        data: plausible,
+                        backgroundColor: '#4ECDC4',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                    }, {
+                        label: '医学可疑离群值',
+                        data: implausible,
+                        backgroundColor: '#FF6B6B',
+                        borderColor: '#FF6B6B',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#4ECDC4',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const model = labels[index];
+                            const plausibleCount = plausible[index];
+                            const implausibleCount = implausible[index];
+                            const total = plausibleCount + implausibleCount;
+                            alert(`您点击了 ${model} 模型\n医学合理离群值: ${plausibleCount.toLocaleString()}\n医学可疑离群值: ${implausibleCount.toLocaleString()}\n总离群值: ${total.toLocaleString()}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        function drawAlgorithmComparisonChart(data, modelSelect) {
+            const ctx = document.getElementById('algorithmComparisonChart').getContext('2d');
+            
+            // 从后端获取实际数据
+            const algorithmMap = {
+                'Isolation Forest': 'Isolation Forest',
+                'LOF': 'LOF',
+                'One-Class SVM': 'One-Class SVM'
+            };
+            
+            // 获取标签数据
+            const labels = (data.modelPerformance && data.modelPerformance.labels) ? data.modelPerformance.labels : [];
+            
+            // 获取训练时间数据（从后端algorithmTimes）
+            const trainingTimes = labels.map(label => {
+                const modelName = algorithmMap[label] || label;
+                return (data.algorithmTimes && data.algorithmTimes[modelName]) ? data.algorithmTimes[modelName] : 0;
+            });
+            
+            // 获取离群值数据（从后端outlierDetection.counts）
+            const outlierCounts = (data.outlierDetection && data.outlierDetection.counts) ? data.outlierDetection.counts : [];
+            
+            // 根据模型选择过滤数据
+            let filteredLabels, filteredTrainingTimes, filteredOutlierCounts;
+            if (modelSelect && modelSelect !== 'all') {
+                const modelMap = {
+                    'isolation_forest': 'Isolation Forest',
+                    'lof': 'LOF',
+                    'one_class_svm': 'One-Class SVM'
+                };
+                const selectedModel = modelMap[modelSelect];
+                const index = labels.indexOf(selectedModel);
+                if (index !== -1) {
+                    filteredLabels = [selectedModel];
+                    filteredTrainingTimes = [trainingTimes[index]];
+                    filteredOutlierCounts = [outlierCounts[index]];
+                } else {
+                    filteredLabels = labels;
+                    filteredTrainingTimes = trainingTimes;
+                    filteredOutlierCounts = outlierCounts;
+                }
+            } else {
+                filteredLabels = labels;
+                filteredTrainingTimes = trainingTimes;
+                filteredOutlierCounts = outlierCounts;
+            }
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: filteredLabels,
+                    datasets: [{
+                        label: '训练时间(秒)',
+                        data: filteredTrainingTimes,
+                        backgroundColor: '#4ECDC4',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                    }, {
+                        label: '检测到的离群值',
+                        data: filteredOutlierCounts,
+                        backgroundColor: '#FF6B6B',
+                        borderColor: '#FF6B6B',
+                        borderWidth: 1,
+                        yAxisID: 'y1',
+                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '训练时间(秒)'
+                            },
+                            beginAtZero: true
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '检测到的离群值'
+                            },
+                            beginAtZero: true,
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#4ECDC4',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const model = labels[index];
+                            const trainingTime = filteredTrainingTimes[index];
+                            const outlierCount = filteredOutlierCounts[index];
+                            alert(`您点击了 ${model} 模型\n训练时间: ${trainingTime}秒\n检测到的离群值: ${outlierCount.toLocaleString()}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        function drawModelPerformanceBarChart(data, modelSelect) {
+            const ctx = document.getElementById('modelPerformanceBarChart').getContext('2d');
+            
+            // 使用从后端获取的实际数据
+            const allLabels = (data && data.modelPerformance && data.modelPerformance.labels) ? data.modelPerformance.labels : ['Isolation Forest', 'LOF', 'One-Class SVM'];
+            const accuracyData = (data && data.modelPerformance && data.modelPerformance.accuracy) ? data.modelPerformance.accuracy : [0.8168, 0.7786, 0.8036];
+            const f1Data = (data && data.modelPerformance && data.modelPerformance.f1Score) ? data.modelPerformance.f1Score : [0.3359, 0.1973, 0.2881];
+            
+            // 根据模型选择过滤数据
+            let labels, accuracy, f1Scores;
+            if (modelSelect && modelSelect !== 'all') {
+                const modelMap = {
+                    'isolation_forest': 'Isolation Forest',
+                    'lof': 'LOF',
+                    'one_class_svm': 'One-Class SVM'
+                };
+                const selectedModel = modelMap[modelSelect];
+                const index = allLabels.indexOf(selectedModel);
+                if (index !== -1) {
+                    labels = [selectedModel];
+                    accuracy = [accuracyData[index]];
+                    f1Scores = [f1Data[index]];
+                } else {
+                    labels = allLabels;
+                    accuracy = accuracyData;
+                    f1Scores = f1Data;
+                }
+            } else {
+                labels = allLabels;
+                accuracy = accuracyData;
+                f1Scores = f1Data;
+            }
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '准确率',
+                        data: accuracy,
+                        backgroundColor: '#4ECDC4',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                    }, {
+                        label: 'F1分数',
+                        data: f1Scores,
+                        backgroundColor: '#FF6B6B',
+                        borderColor: '#FF6B6B',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#4ECDC4',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(4);
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const model = labels[index];
+                            alert(`您点击了 ${model} 模型\n准确率: ${accuracy[index].toFixed(4)}\nF1分数: ${f1Scores[index].toFixed(4)}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+
+        function drawLargeDataBarChart(largeDataMetrics) {
+            const ctx = document.getElementById('largeDataBarChart').getContext('2d');
+            
+            // 使用从后端获取的实际数据
+            const labels = (largeDataMetrics && largeDataMetrics.labels) ? largeDataMetrics.labels : ['胆固醇', '血红蛋白', '血小板', '肌酐'];
+            const normalData = (largeDataMetrics && largeDataMetrics.normalData) ? largeDataMetrics.normalData : [198, 145, 220, 75];
+            const outlierData = (largeDataMetrics && largeDataMetrics.outlierData) ? largeDataMetrics.outlierData : [245, 160, 280, 120];
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '正常样本中位数',
+                        data: normalData,
+                        backgroundColor: '#4ECDC4',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                    }, {
+                        label: '离群样本中位数',
+                        data: outlierData,
+                        backgroundColor: '#FF6B6B',
+                        borderColor: '#FF6B6B',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#4ECDC4',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const label = labels[index];
+                            const normalValue = normalData[index];
+                            const outlierValue = outlierData[index];
+                            alert(`您点击了 ${label}\n正常样本中位数: ${normalValue}\n离群样本中位数: ${outlierValue}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        function drawSmallDataBarChart(smallDataMetrics) {
+            const ctx = document.getElementById('smallDataBarChart').getContext('2d');
+            
+            // 使用从后端获取的实际数据
+            const labels = (smallDataMetrics && smallDataMetrics.labels) ? smallDataMetrics.labels : ['血糖', '甘油三酯', '白细胞', '淋巴细胞', 'ALT', 'AST', '尿素'];
+            const normalData = (smallDataMetrics && smallDataMetrics.normalData) ? smallDataMetrics.normalData : [5.0, 1.5, 6.5, 1.8, 25, 25, 5.0];
+            const outlierData = (smallDataMetrics && smallDataMetrics.outlierData) ? smallDataMetrics.outlierData : [6.5, 2.5, 8.5, 2.5, 45, 45, 7.5];
+            
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '正常样本中位数',
+                        data: normalData,
+                        backgroundColor: '#4ECDC4',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                    }, {
+                        label: '离群样本中位数',
+                        data: outlierData,
+                        backgroundColor: '#FF6B6B',
+                        borderColor: '#FF6B6B',
+                        borderWidth: 1,
+                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 60
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#4ECDC4',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    onClick: function(event, elements) {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const label = labels[index];
+                            const normalValue = normalData[index];
+                            const outlierValue = outlierData[index];
+                            alert(`您点击了 ${label}\n正常样本中位数: ${normalValue}\n离群样本中位数: ${outlierValue}`);
+                        }
+                    }
+                }
+            });
+        }
+        
+        function populateResultTable(data) {
+            const tbody = document.getElementById('resultTable');
+            tbody.innerHTML = '';
+            
+            if (data && data.length > 0) {
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    // 提取必要的字段
+                    const patientId = item.patient_id || item.PatientID || 'N/A';
+                    const age = item.age || 'N/A';
+                    const sex = item.sex || (item.gender === 1 ? '男' : '女') || 'N/A';
+                    const bloodPressure = item.trestbps || item.blood_pressure || 'N/A';
+                    const cholesterol = item.chol || item.cholesterol || 'N/A';
+                    const bloodSugar = item.blood_sugar || item.glucose || 'N/A';
+                    
+                    // 动态获取检测结果和得分字段
+                    let result = 'N/A';
+                    let score = 'N/A';
+                    for (const key in item) {
+                        if (key.endsWith('_is_outlier')) {
+                            result = item[key] || 'N/A';
+                        } else if (key.endsWith('_score')) {
+                            score = item[key] || 'N/A';
+                        }
+                    }
+                    
+                    const evaluation = item.evaluation || 'N/A';
+                    
+                    row.innerHTML = `
+                        <td>${patientId}</td>
+                        <td>${age}</td>
+                        <td>${sex}</td>
+                        <td>${bloodPressure}</td>
+                        <td>${cholesterol}</td>
+                        <td>${bloodSugar}</td>
+                        <td>${result}</td>
+                        <td>${score}</td>
+                        <td>${evaluation}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } else {
+                // 显示无数据提示
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="9" class="text-center">暂无数据</td>';
+                tbody.appendChild(row);
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

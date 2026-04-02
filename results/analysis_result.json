@@ -1,0 +1,643 @@
+{
+  "success": true,
+  "data": {
+    "totalSamples": 100000,
+    "abnormalCount": 10000,
+    "abnormalRatio": "10.00%",
+    "analysisTime": "13.1270s",
+    "algorithmTimes": {
+      "LOF": 13.126967668533325
+    },
+    "modelPerformance": {
+      "labels": [
+        "LOF"
+      ],
+      "accuracy": [
+        0.78262
+      ],
+      "f1Score": [
+        0.21187731128997173
+      ]
+    },
+    "outlierDetection": {
+      "labels": [
+        "LOF"
+      ],
+      "counts": [
+        10000
+      ]
+    },
+    "clinicalValidation": {
+      "labels": [
+        "LOF"
+      ],
+      "plausible": [
+        267
+      ],
+      "implausible": [
+        9733
+      ]
+    },
+    "largeDataMetrics": {
+      "labels": [
+        "胆固醇",
+        "血小板",
+        "肌酐"
+      ],
+      "normalData": [
+        217.0,
+        220.0,
+        74.0
+      ],
+      "outlierData": [
+        217.0,
+        219.0,
+        75.0
+      ]
+    },
+    "smallDataMetrics": {
+      "labels": [
+        "血糖",
+        "甘油三酯",
+        "白细胞",
+        "淋巴细胞",
+        "ALT",
+        "AST",
+        "尿素",
+        "红细胞"
+      ],
+      "normalData": [
+        5.0,
+        1.49,
+        6.5,
+        1.8,
+        24.0,
+        24.0,
+        5.0,
+        4.8
+      ],
+      "outlierData": [
+        5.0,
+        1.55,
+        6.5,
+        1.8,
+        25.0,
+        25.0,
+        5.0,
+        4.8
+      ]
+    },
+    "detailedResults": [
+      {
+        "patient_id": "P1",
+        "age": 30,
+        "sex": "男",
+        "blood_pressure": 120,
+        "cholesterol": 180,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 0.9944,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P2",
+        "age": 31,
+        "sex": "女",
+        "blood_pressure": 121,
+        "cholesterol": 181,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0362,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P3",
+        "age": 32,
+        "sex": "男",
+        "blood_pressure": 122,
+        "cholesterol": 182,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0489,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P4",
+        "age": 33,
+        "sex": "女",
+        "blood_pressure": 123,
+        "cholesterol": 183,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.1025,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P5",
+        "age": 34,
+        "sex": "男",
+        "blood_pressure": 124,
+        "cholesterol": 184,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0418,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P6",
+        "age": 35,
+        "sex": "女",
+        "blood_pressure": 125,
+        "cholesterol": 185,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.011,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P7",
+        "age": 36,
+        "sex": "男",
+        "blood_pressure": 126,
+        "cholesterol": 186,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0946,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P8",
+        "age": 37,
+        "sex": "女",
+        "blood_pressure": 127,
+        "cholesterol": 187,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.1391,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P9",
+        "age": 38,
+        "sex": "男",
+        "blood_pressure": 128,
+        "cholesterol": 188,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "离群值",
+        "LOF_score": 1.1873,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P10",
+        "age": 39,
+        "sex": "女",
+        "blood_pressure": 129,
+        "cholesterol": 189,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0704,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P11",
+        "age": 40,
+        "sex": "男",
+        "blood_pressure": 130,
+        "cholesterol": 190,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.035,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P12",
+        "age": 41,
+        "sex": "女",
+        "blood_pressure": 131,
+        "cholesterol": 191,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0687,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P13",
+        "age": 42,
+        "sex": "男",
+        "blood_pressure": 132,
+        "cholesterol": 192,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0426,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P14",
+        "age": 43,
+        "sex": "女",
+        "blood_pressure": 133,
+        "cholesterol": 193,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0638,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P15",
+        "age": 44,
+        "sex": "男",
+        "blood_pressure": 134,
+        "cholesterol": 194,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0592,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P16",
+        "age": 45,
+        "sex": "女",
+        "blood_pressure": 135,
+        "cholesterol": 195,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0161,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P17",
+        "age": 46,
+        "sex": "男",
+        "blood_pressure": 136,
+        "cholesterol": 196,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "离群值",
+        "LOF_score": 1.1838,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P18",
+        "age": 47,
+        "sex": "女",
+        "blood_pressure": 137,
+        "cholesterol": 197,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0681,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P19",
+        "age": 48,
+        "sex": "男",
+        "blood_pressure": 138,
+        "cholesterol": 198,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "离群值",
+        "LOF_score": 1.1951,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P20",
+        "age": 49,
+        "sex": "女",
+        "blood_pressure": 139,
+        "cholesterol": 199,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0778,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P21",
+        "age": 50,
+        "sex": "男",
+        "blood_pressure": 140,
+        "cholesterol": 200,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 0.9907,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P22",
+        "age": 51,
+        "sex": "女",
+        "blood_pressure": 141,
+        "cholesterol": 201,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "离群值",
+        "LOF_score": 1.183,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P23",
+        "age": 52,
+        "sex": "男",
+        "blood_pressure": 142,
+        "cholesterol": 202,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.1101,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P24",
+        "age": 53,
+        "sex": "女",
+        "blood_pressure": 143,
+        "cholesterol": 203,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.1217,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P25",
+        "age": 54,
+        "sex": "男",
+        "blood_pressure": 144,
+        "cholesterol": 204,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0372,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P26",
+        "age": 55,
+        "sex": "女",
+        "blood_pressure": 145,
+        "cholesterol": 205,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "离群值",
+        "LOF_score": 1.1526,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P27",
+        "age": 56,
+        "sex": "男",
+        "blood_pressure": 146,
+        "cholesterol": 206,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.047,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P28",
+        "age": 57,
+        "sex": "女",
+        "blood_pressure": 147,
+        "cholesterol": 207,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.1023,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P29",
+        "age": 58,
+        "sex": "男",
+        "blood_pressure": 148,
+        "cholesterol": 208,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0115,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P30",
+        "age": 59,
+        "sex": "女",
+        "blood_pressure": 149,
+        "cholesterol": 209,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0863,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P31",
+        "age": 60,
+        "sex": "男",
+        "blood_pressure": 120,
+        "cholesterol": 210,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0483,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P32",
+        "age": 61,
+        "sex": "女",
+        "blood_pressure": 121,
+        "cholesterol": 211,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 0.9997,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P33",
+        "age": 62,
+        "sex": "男",
+        "blood_pressure": 122,
+        "cholesterol": 212,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0098,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P34",
+        "age": 63,
+        "sex": "女",
+        "blood_pressure": 123,
+        "cholesterol": 213,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0196,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P35",
+        "age": 64,
+        "sex": "男",
+        "blood_pressure": 124,
+        "cholesterol": 214,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0891,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P36",
+        "age": 65,
+        "sex": "女",
+        "blood_pressure": 125,
+        "cholesterol": 215,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0592,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P37",
+        "age": 66,
+        "sex": "男",
+        "blood_pressure": 126,
+        "cholesterol": 216,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.009,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P38",
+        "age": 67,
+        "sex": "女",
+        "blood_pressure": 127,
+        "cholesterol": 217,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0383,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P39",
+        "age": 68,
+        "sex": "男",
+        "blood_pressure": 128,
+        "cholesterol": 218,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0492,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P40",
+        "age": 69,
+        "sex": "女",
+        "blood_pressure": 129,
+        "cholesterol": 219,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0916,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P41",
+        "age": 30,
+        "sex": "男",
+        "blood_pressure": 130,
+        "cholesterol": 220,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0915,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P42",
+        "age": 31,
+        "sex": "女",
+        "blood_pressure": 131,
+        "cholesterol": 221,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0255,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P43",
+        "age": 32,
+        "sex": "男",
+        "blood_pressure": 132,
+        "cholesterol": 222,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "离群值",
+        "LOF_score": 1.16,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P44",
+        "age": 33,
+        "sex": "女",
+        "blood_pressure": 133,
+        "cholesterol": 223,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0407,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P45",
+        "age": 34,
+        "sex": "男",
+        "blood_pressure": 134,
+        "cholesterol": 224,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.089,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P46",
+        "age": 35,
+        "sex": "女",
+        "blood_pressure": 135,
+        "cholesterol": 225,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0395,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P47",
+        "age": 36,
+        "sex": "男",
+        "blood_pressure": 136,
+        "cholesterol": 226,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.138,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P48",
+        "age": 37,
+        "sex": "女",
+        "blood_pressure": 137,
+        "cholesterol": 227,
+        "blood_sugar": 7.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0112,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P49",
+        "age": 38,
+        "sex": "男",
+        "blood_pressure": 138,
+        "cholesterol": 228,
+        "blood_sugar": 5.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.1169,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P50",
+        "age": 39,
+        "sex": "女",
+        "blood_pressure": 139,
+        "cholesterol": 229,
+        "blood_sugar": 6.0,
+        "LOF_is_outlier": "正常",
+        "LOF_score": 1.0527,
+        "evaluation": "正常"
+      }
+    ]
+  }
+}
