@@ -8,32 +8,53 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(160deg, #f0f4f8 0%, #e8eef3 45%, #f8f9fa 100%);
+            min-height: 100vh;
         }
-        .container {
-            max-width: 1200px;
+        .container-xl {
+            max-width: 1320px;
         }
         .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border-radius:12px;
+            box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(15, 23, 42, 0.06);
         }
-        .card:hover {
-            transform: translateY(-5px);
+        .card.lift-hover {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .card.lift-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(15, 23, 42, 0.1);
         }
         .card-header {
-            background-color: #4ECDC4;
+            background: linear-gradient(135deg, #2a9d8f 0%, #1d7a72 100%);
             color: white;
-            font-weight: bold;
+            font-weight: 700;
+            border: none;
+        }
+        .card-header.header-accent-lof {
+            background: linear-gradient(135deg, #e76f51 0%, #c94d38 100%);
+        }
+        .card-header.header-accent-neutral {
+            background: linear-gradient(135deg, #415a77 0%, #30405a 100%);
+        }
+        .card-header .header-sub {
+            font-size: 0.8125rem;
+            font-weight: 400;
+            opacity: 0.92;
+            margin-top: 0.35rem;
+            line-height: 1.4;
         }
         .btn-primary {
-            background-color: #4ECDC4;
-            border-color: #4ECDC4;
+            background: linear-gradient(135deg, #2a9d8f 0%, #237e73 100%);
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.02em;
         }
         .btn-primary:hover {
-            background-color: #45B7D1;
-            border-color: #45B7D1;
+            background: linear-gradient(135deg, #238b7e 0%, #1d6b60 100%);
+            border: none;
         }
         .loading {
             display: none;
@@ -68,46 +89,112 @@
         }
         .chart-container {
             position: relative;
-            height: 400px;
-            margin-bottom: 40px;
-        }
-        .card {
-            margin-bottom: 30px;
+            height: 360px;
         }
         .result-section {
-            padding: 20px 0;
+            padding: 20px 0 48px;
         }
         .stats-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(145deg, #415a77 0%, #3d5a80 40%, #293241 100%);
             color: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            min-height: 180px;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            min-height: 168px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 4px 20px rgba(41, 50, 65, 0.2);
+        }
+        .stats-card.stats-highlight {
+            background: linear-gradient(145deg, #2a9d8f 0%, #237e73 100%);
         }
         .stats-card h4 {
             margin-bottom: 10px;
+            font-size: 0.95rem;
+            opacity: 0.92;
+            font-weight: 600;
         }
         .stats-value {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .algo-overview-card {
+            background: #fff;
+            border: 1px solid rgba(42, 157, 143, 0.2) !important;
+        }
+        .algo-overview-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: -0.02em;
+        }
+        .algo-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            border: 2px solid transparent;
+        }
+        .algo-chip .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .algo-chip--if { background: rgba(42,157,143,.14); color: #1d6b60; border-color: rgba(42,157,143,.35); }
+        .algo-chip--lof { background: rgba(231,111,81,.14); color: #9e452f; border-color: rgba(231,111,81,.35); }
+        .algo-chip--svm { background: rgba(106,76,147,.14); color: #4a3568; border-color: rgba(106,76,147,.35); }
+        .algo-chip.active {
+            box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.12);
+            transform: scale(1.02);
+        }
+        .algo-compare-table {
+            font-variant-numeric: tabular-nums;
+        }
+        .algo-compare-table thead th {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #64748b;
+            border-bottom-width: 2px;
+        }
+        .algo-compare-table tbody tr {
+            transition: background 0.15s ease;
+        }
+        .algo-compare-table tbody tr:hover {
+            background: rgba(42, 157, 143, 0.06);
+        }
+        .algo-compare-table tbody tr.row-selected {
+            background: rgba(42, 157, 143, 0.14) !important;
+            font-weight: 600;
+        }
+        .algo-chart-card .card-header {
+            border-radius: 12px 12px 0 0;
+        }
+        .page-hero {
+            border: 1px solid rgba(42, 157, 143, 0.15);
+            background: linear-gradient(180deg, rgba(42,157,143,0.07) 0%, #fff 100%);
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="text-center mb-5">
-            <h1 class="display-4 text-primary">医疗数据离群值检测系统</h1>
-            <p class="lead">专业分析医疗数据中的离群值，提供详细的检测结果和可视化分析</p>
+    <div class="container container-xl mt-4 mb-5">
+        <div class="text-center mb-5 page-hero rounded-4 py-4 px-3">
+            <h1 class="display-5 fw-bold" style="color:#0f766e;">医疗数据离群值检测系统</h1>
+            <p class="lead text-secondary mb-0 mx-auto" style="max-width:640px;">对比 <strong>孤立森林</strong>、<strong>LOF</strong> 与 <strong>One-Class SVM</strong> 在同一批医疗数据上的检出差异、耗时与验证结果</p>
         </div>
         
         <!-- 控制面板 -->
-        <div class="card mb-5">
-            <div class="card-header">
+        <div class="card mb-5 lift-hover">
+            <div class="card-header py-3">
                 分析控制
+                <div class="header-sub">选择「所有模型」可在下方表格与图表中并排查看三种算法；单色柱图与图例一一对应。</div>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -150,16 +237,16 @@
         <!-- 结果展示 -->
         <div class="result-section" id="resultSection">
             <!-- 统计信息 -->
-            <div class="row mb-5">
+            <div class="row g-3 mb-4">
                 <div class="col-md-3">
-                    <div class="stats-card">
+                    <div class="stats-card stats-highlight">
                         <h4>总样本数</h4>
                         <div class="stats-value" id="totalSamples">0</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stats-card">
-                        <h4>异常样本数</h4>
+                        <h4>当前关注 · 异常样本数</h4>
                         <div class="stats-value" id="abnormalCount">0</div>
                     </div>
                 </div>
@@ -167,81 +254,111 @@
                     <div class="stats-card">
                         <h4>异常比例</h4>
                         <div class="stats-value" id="abnormalRatio">0%</div>
+                        <div id="abnormalRatioHint" style="font-size: 0.72rem; margin-top: 10px; opacity: 0.92; line-height: 1.35; font-weight: normal;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stats-card">
-                        <h4>分析时间</h4>
-                        <div class="stats-value" id="analysisTimeValue" style="font-size: 2rem; font-weight: bold;"></div>
-                        <div class="stats-algorithm" id="analysisAlgorithm" style="font-size: 1rem; margin-top: 5px;"></div>
+                        <h4>训练耗时</h4>
+                        <div class="stats-value" id="analysisTimeValue" style="font-size: 1.75rem; font-weight: bold;"></div>
+                        <div class="stats-algorithm" id="analysisAlgorithm" style="font-size: 0.9rem; margin-top: 6px; opacity: 0.95;"></div>
                     </div>
                 </div>
             </div>
             
-            <!-- 模型性能 -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    模型性能对比
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="modelPerformanceChart"></canvas>
+            <!-- 三算法对比总览 -->
+            <div class="card mb-4 algo-overview-card shadow-sm">
+                <div class="card-body py-4">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                        <h5 class="algo-overview-title mb-0">三算法核心指标对比</h5>
+                        <span class="badge rounded-pill text-bg-light border text-secondary small" id="algoViewModeBadge">—</span>
+                    </div>
+                    <p class="text-muted small mb-3" id="algoOverviewHint">分析完成后，此处展示各算法在同一数据上的耗时、检出量与验证指标。</p>
+                    <div class="algo-legend d-flex flex-wrap gap-2 mb-3" id="algoLegendChips" aria-label="算法图例"></div>
+                    <div class="table-responsive rounded-3 border">
+                        <table class="table table-hover align-middle mb-0 algo-compare-table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">算法</th>
+                                    <th class="text-end" scope="col">训练耗时 (s)</th>
+                                    <th class="text-end" scope="col">检出离群数</th>
+                                    <th class="text-end" scope="col">离群占样本比</th>
+                                    <th class="text-end" scope="col">准确率</th>
+                                    <th class="text-end" scope="col">F1</th>
+                                    <th class="text-end" scope="col">医学合理</th>
+                                    <th class="text-end" scope="col">医学可疑</th>
+                                </tr>
+                            </thead>
+                            <tbody id="algorithmComparisonTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             
-            <!-- 离群值检测结果 -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    离群值检测结果
+            <div class="row g-4 mb-2">
+                <div class="col-lg-6">
+                    <div class="card h-100 mb-4 mb-lg-0 algo-chart-card shadow-sm">
+                        <div class="card-header py-3">
+                            准确率与 F1（按算法着色）
+                            <div class="header-sub">柱组内浅色为准确率、深色为 F1；颜色与上方图例一致。</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="modelPerformanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="outlierDetectionChart"></canvas>
+                <div class="col-lg-6">
+                    <div class="card h-100 mb-4 mb-lg-0 algo-chart-card shadow-sm">
+                        <div class="card-header py-3 header-accent-lof">
+                            检出离群值数量对比
+                            <div class="header-sub">直观对比三种算法判定的异常规模差异（受 contamination / nu 约束）。</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="outlierDetectionChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- 医学符合性验证 -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    医学符合性验证
+            <div class="card mb-5 algo-chart-card shadow-sm">
+                <div class="card-header py-3 header-accent-neutral">
+                    医学符合性验证（堆叠）
+                    <div class="header-sub">绿色为规则下医学解释合理的离群点，红色为可疑；可按算法比较「合理 / 可疑」结构。</div>
                 </div>
                 <div class="card-body">
-                    <div class="chart-container">
+                    <div class="chart-container chart-container--tall" style="height:400px;">
                         <canvas id="clinicalValidationChart"></canvas>
                     </div>
                 </div>
             </div>
             
             <!-- 数据对比分析 -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    数据对比分析
+            <div class="card mb-5 shadow-sm">
+                <div class="card-header py-3">
+                    深度对比：耗时与离群规模（双轴）
+                    <div class="header-sub">左轴为训练秒数，右轴为检出离群条数；便于权衡「速度」与「检出量」。</div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <!-- 算法性能对比 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card">
-                                <div class="card-header bg-primary text-white">
-                                    算法性能对比
-                                </div>
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
                                 <div class="card-body">
+                                    <div class="small fw-bold text-secondary mb-2">训练时间 vs 检出量</div>
                                     <div class="chart-container">
                                         <canvas id="algorithmComparisonChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- 模型准确率对比 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card">
-                                <div class="card-header bg-secondary text-white">
-                                    模型准确率对比
-                                </div>
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
                                 <div class="card-body">
+                                    <div class="small fw-bold text-secondary mb-2">准确率 / F1 再次对照（与首屏柱图数据一致）</div>
                                     <div class="chart-container">
                                         <canvas id="modelPerformanceBarChart"></canvas>
                                     </div>
@@ -250,28 +367,21 @@
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <!-- 大数据指标对比 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card">
-                                <div class="card-header bg-primary text-white">
-                                    大数据指标对比
-                                </div>
+                    <div class="row g-4 mt-1">
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
                                 <div class="card-body">
+                                    <div class="small fw-bold text-secondary mb-2">实验室大数据指标 · 正常 vs 离群中位数（基于当前主算法划分）</div>
                                     <div class="chart-container">
                                         <canvas id="largeDataBarChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- 小数据指标对比 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="card">
-                                <div class="card-header bg-secondary text-white">
-                                    小数据指标对比
-                                </div>
+                        <div class="col-lg-6">
+                            <div class="card border-0 bg-light h-100">
                                 <div class="card-body">
+                                    <div class="small fw-bold text-secondary mb-2">实验室小数据指标 · 正常 vs 离群中位数</div>
                                     <div class="chart-container">
                                         <canvas id="smallDataBarChart"></canvas>
                                     </div>
@@ -283,9 +393,10 @@
             </div>
             
             <!-- 详细数据 -->
-            <div class="card">
-                <div class="card-header">
-                    详细检测结果
+            <div class="card shadow-sm">
+                <div class="card-header py-3">
+                    样本级明细（节选）
+                    <div class="header-sub">基于当前下拉框所选主算法打标；选「所有模型」时与后台默认主算法（孤立森林）列名一致，完整对比请看上方表格与图表。</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -318,7 +429,99 @@
         // 图表实例变量
         let modelPerformanceChart, outlierDetectionChart, clinicalValidationChart, algorithmComparisonChart, modelPerformanceBarChart, largeDataBarChart, smallDataBarChart;
         
-        // 销毁图表实例的函数
+        /** 三算法统一配色与中文名（图表与图例共用） */
+        const ALGO_META = {
+            'Isolation Forest': {
+                short: 'IF', zh: '孤立森林', chipClass: 'algo-chip--if',
+                color: '#2a9d8f', accBg: 'rgba(42,157,143,0.42)', f1Bg: 'rgba(42,157,143,0.88)',
+                desc: '孤立森林：随机树路径长度，适合高维稀疏异常'
+            },
+            'LOF': {
+                short: 'LOF', zh: '局部离群因子', chipClass: 'algo-chip--lof',
+                color: '#e76f51', accBg: 'rgba(231,111,81,0.42)', f1Bg: 'rgba(231,111,81,0.88)',
+                desc: 'LOF：与邻域局部密度对比，擅长形状复杂数据'
+            },
+            'One-Class SVM': {
+                short: 'OCSVM', zh: 'One-Class SVM', chipClass: 'algo-chip--svm',
+                color: '#6a4c93', accBg: 'rgba(106,76,147,0.42)', f1Bg: 'rgba(106,76,147,0.88)',
+                desc: '单类 SVM：包围「正常」区域，边界外视为异常'
+            }
+        };
+        function algoMeta(label) {
+            return ALGO_META[label] || {
+                short: label, zh: label, chipClass: 'algo-chip--if', color: '#64748b',
+                accBg: 'rgba(100,116,139,0.42)', f1Bg: 'rgba(100,116,139,0.88)', desc: ''
+            };
+        }
+        function modelEnFromSelect(modelSelect) {
+            return ({ isolation_forest: 'Isolation Forest', lof: 'LOF', one_class_svm: 'One-Class SVM' })[modelSelect];
+        }
+        function updateAlgoViewBadge(modelSelect) {
+            const el = document.getElementById('algoViewModeBadge');
+            if (!el) return;
+            if (modelSelect === 'all') {
+                el.textContent = '并排对比 · 全部算法';
+                el.className = 'badge rounded-pill text-bg-success border-0 small';
+            } else {
+                const m = { isolation_forest: '孤立森林', lof: '局部离群因子', one_class_svm: 'One-Class SVM' };
+                el.textContent = '单算法 · ' + (m[modelSelect] || modelSelect);
+                el.className = 'badge rounded-pill text-bg-secondary border-0 small';
+            }
+        }
+        function renderAlgoLegendChips(labels, modelSelect) {
+            const host = document.getElementById('algoLegendChips');
+            if (!host) return;
+            host.innerHTML = '';
+            const order = ['Isolation Forest', 'LOF', 'One-Class SVM'];
+            const selectedEn = modelSelect === 'all' ? null : modelEnFromSelect(modelSelect);
+            order.forEach(key => {
+                if (!labels || !labels.includes(key)) return;
+                const m = algoMeta(key);
+                const chip = document.createElement('span');
+                chip.className = 'algo-chip ' + m.chipClass + (selectedEn === key ? ' active' : '');
+                chip.innerHTML = '<span class="dot" style="background:' + m.color + '"></span>' + m.zh;
+                if (m.desc) chip.title = m.desc;
+                host.appendChild(chip);
+            });
+        }
+        function fillAlgorithmComparisonTable(payload, modelSelect) {
+            const tb = document.getElementById('algorithmComparisonTableBody');
+            const hint = document.getElementById('algoOverviewHint');
+            if (!tb) return;
+            tb.innerHTML = '';
+            const labels = (payload.modelPerformance && payload.modelPerformance.labels) ? payload.modelPerformance.labels : [];
+            const totalSamples = payload.totalSamples || 0;
+            if (hint) {
+                hint.textContent = labels.length >= 2
+                    ? '下表汇总各算法在同一批样本上的训练耗时、检出离群数、分类指标与医学规则校验结果，便于横向对比。'
+                    : '当前仅训练单一算法，表格只含一行；若要并排对比三种方法，请在控制面板选择「所有模型」后重新分析。';
+            }
+            const selectedEn = modelSelect === 'all' ? null : modelEnFromSelect(modelSelect);
+            labels.forEach((label, i) => {
+                const t = (payload.algorithmTimes && payload.algorithmTimes[label] != null) ? payload.algorithmTimes[label] : null;
+                const cnt = (payload.outlierDetection && payload.outlierDetection.counts) ? payload.outlierDetection.counts[i] : null;
+                const acc = (payload.modelPerformance && payload.modelPerformance.accuracy) ? payload.modelPerformance.accuracy[i] : null;
+                const f1 = (payload.modelPerformance && payload.modelPerformance.f1Score) ? payload.modelPerformance.f1Score[i] : null;
+                const pl = (payload.clinicalValidation && payload.clinicalValidation.plausible) ? payload.clinicalValidation.plausible[i] : null;
+                const imp = (payload.clinicalValidation && payload.clinicalValidation.implausible) ? payload.clinicalValidation.implausible[i] : null;
+                const ratio = (cnt != null && totalSamples > 0) ? ((cnt / totalSamples) * 100).toFixed(2) + '%' : '—';
+                const m = algoMeta(label);
+                const tr = document.createElement('tr');
+                tr.style.borderLeft = '4px solid ' + m.color;
+                if (selectedEn && label === selectedEn) tr.classList.add('row-selected');
+                tr.innerHTML =
+                    '<th scope="row" class="fw-semibold">' + m.zh + ' <span class="text-muted small fw-normal">(' + m.short + ')</span></th>' +
+                    '<td class="text-end">' + (t != null ? t.toFixed(3) : "-") + '</td>' +
+                    '<td class="text-end">' + (cnt != null ? Number(cnt).toLocaleString() : "-") + '</td>' +
+                    '<td class="text-end">' + ratio + '</td>' +
+                    '<td class="text-end">' + (acc != null ? acc.toFixed(4) : "-") + '</td>' +
+                    '<td class="text-end">' + (f1 != null ? f1.toFixed(4) : "-") + '</td>' +
+                    '<td class="text-end">' + (pl != null ? Number(pl).toLocaleString() : "-") + '</td>' +
+                    '<td class="text-end">' + (imp != null ? Number(imp).toLocaleString() : "-") + '</td>';
+                tb.appendChild(tr);
+            });
+        }
+        
         function destroyCharts() {
             if (modelPerformanceChart) {
                 modelPerformanceChart.destroy();
@@ -343,6 +546,30 @@
             }
         }
         
+        /** 无有效后端数据时不使用演示假数据，仅显示提示 */
+        function emptyChartPlaceholder(ctx, message) {
+            return new Chart(ctx, {
+                type: 'bar',
+                data: { labels: [], datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: message,
+                            color: '#6c757d',
+                            font: { size: 14 }
+                        }
+                    },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    }
+                }
+            });
+        }
+        
         document.getElementById('startAnalysis').addEventListener('click', function() {
             // 显示加载状态和遮罩
             document.getElementById('loading').style.display = 'block';
@@ -356,8 +583,8 @@
             const analysisType = document.getElementById('analysisType').value;
             const modelSelect = document.getElementById('modelSelect').value;
             
-            // 调用后端API
-            fetch('http://localhost:5000/api/analyze', {
+            // 使用同源相对路径，避免 127.0.0.1 / 局域网 IP 与 localhost 混用导致跨域失败
+            fetch('/api/analyze', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -367,13 +594,28 @@
                     modelSelect: modelSelect
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                // 隐藏加载状态和遮罩
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('loadingOverlay').style.display = 'none';
+            .then(async (response) => {
+                const text = await response.text();
+                let data = {};
+                try {
+                    data = text ? JSON.parse(text) : {};
+                } catch (e) {
+                    throw new Error('服务器返回非 JSON，请确认通过本服务访问页面（不要用本地文件双击打开）。');
+                }
+                return { response, data };
+            })
+            .then(({ response, data }) => {
+                if (!data.success) {
+                    alert('分析失败: ' + (data.error || data.message || ('HTTP ' + response.status)));
+                    return;
+                }
                 
-                if (data.success) {
+                if (!data.data) {
+                    alert('分析失败: 返回数据为空');
+                    return;
+                }
+                
+                try {
                     // 显示结果
                     document.getElementById('resultSection').style.display = 'block';
                     
@@ -381,6 +623,20 @@
                     document.getElementById('totalSamples').textContent = data.data.totalSamples.toLocaleString();
                     document.getElementById('abnormalCount').textContent = data.data.abnormalCount.toLocaleString();
                     document.getElementById('abnormalRatio').textContent = data.data.abnormalRatio;
+                    const ratioHint = document.getElementById('abnormalRatioHint');
+                    const hp = data.data.detectionHyperparameters;
+                    if (ratioHint) {
+                        ratioHint.textContent = hp
+                            ? '来自接口：异常数=模型预测标签统计，非前端固定值。IF/LOF 使用 contamination=' + hp.contamination + '，故占比常接近 ' + (hp.contamination * 100) + '%；One-Class SVM 使用 nu=' + hp.one_class_nu + '。'
+                            : '';
+                    }
+                    
+                    updateAlgoViewBadge(modelSelect);
+                    renderAlgoLegendChips(
+                        (data.data.modelPerformance && data.data.modelPerformance.labels) ? data.data.modelPerformance.labels : [],
+                        modelSelect
+                    );
+                    fillAlgorithmComparisonTable(data.data, modelSelect);
                     
                     // 显示使用的算法和时间
                     if (modelSelect === 'all' && data.data.algorithmTimes) {
@@ -443,16 +699,17 @@
                     
                     // 填充表格数据
                     populateResultTable(data.data.detailedResults);
-                } else {
-                    // 显示错误信息
-                    alert('分析失败: ' + data.error);
+                } catch (vizErr) {
+                    console.error(vizErr);
+                    alert('渲染图表或结果时出错: ' + vizErr.message);
                 }
             })
             .catch(error => {
-                // 隐藏加载状态和遮罩
+                alert('API调用失败: ' + error.message);
+            })
+            .finally(() => {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('loadingOverlay').style.display = 'none';
-                alert('API调用失败: ' + error.message);
             });
         });
         
@@ -484,6 +741,11 @@
                 f1Score = data.f1Score;
             }
             
+            const accBg = labels.map(function (lb) { return algoMeta(lb).accBg; });
+            const accBr = labels.map(function (lb) { return algoMeta(lb).color; });
+            const f1Bg = labels.map(function (lb) { return algoMeta(lb).f1Bg; });
+            const f1Br = labels.map(function (lb) { return algoMeta(lb).color; });
+            
             return new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -491,19 +753,15 @@
                     datasets: [{
                         label: '准确率',
                         data: accuracy,
-                        backgroundColor: '#4ECDC4',
-                        borderColor: '#4ECDC4',
-                        borderWidth: 1,
-                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
-                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                        backgroundColor: accBg,
+                        borderColor: accBr,
+                        borderWidth: 2
                     }, {
                         label: 'F1分数',
                         data: f1Score,
-                        backgroundColor: '#FF6B6B',
-                        borderColor: '#FF6B6B',
-                        borderWidth: 1,
-                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
-                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                        backgroundColor: f1Bg,
+                        borderColor: f1Br,
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -576,6 +834,9 @@
                 counts = data.counts;
             }
             
+            const countColors = labels.map(function (lb) { return algoMeta(lb).color; });
+            const countColorsSoft = labels.map(function (lb) { return algoMeta(lb).accBg; });
+            
             return new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -583,11 +844,9 @@
                     datasets: [{
                         label: '检测到的离群值数量',
                         data: counts,
-                        backgroundColor: '#45B7D1',
-                        borderColor: '#45B7D1',
-                        borderWidth: 1,
-                        hoverBackgroundColor: 'rgba(69, 183, 209, 0.8)',
-                        hoverBorderColor: 'rgba(69, 183, 209, 1)'
+                        backgroundColor: countColorsSoft,
+                        borderColor: countColors,
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -777,6 +1036,11 @@
                 filteredOutlierCounts = outlierCounts;
             }
             
+            const barTimeBg = filteredLabels.map(function (lb) { return algoMeta(lb).accBg; });
+            const barTimeBr = filteredLabels.map(function (lb) { return algoMeta(lb).color; });
+            const barCntBg = filteredLabels.map(function (lb) { return algoMeta(lb).f1Bg; });
+            const barCntBr = filteredLabels.map(function (lb) { return algoMeta(lb).color; });
+            
             return new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -784,21 +1048,17 @@
                     datasets: [{
                         label: '训练时间(秒)',
                         data: filteredTrainingTimes,
-                        backgroundColor: '#4ECDC4',
-                        borderColor: '#4ECDC4',
-                        borderWidth: 1,
-                        yAxisID: 'y',
-                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
-                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                        backgroundColor: barTimeBg,
+                        borderColor: barTimeBr,
+                        borderWidth: 2,
+                        yAxisID: 'y'
                     }, {
                         label: '检测到的离群值',
                         data: filteredOutlierCounts,
-                        backgroundColor: '#FF6B6B',
-                        borderColor: '#FF6B6B',
-                        borderWidth: 1,
-                        yAxisID: 'y1',
-                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
-                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                        backgroundColor: barCntBg,
+                        borderColor: barCntBr,
+                        borderWidth: 2,
+                        yAxisID: 'y1'
                     }]
                 },
                 options: {
@@ -864,7 +1124,7 @@
                     onClick: function(event, elements) {
                         if (elements.length > 0) {
                             const index = elements[0].index;
-                            const model = labels[index];
+                            const model = filteredLabels[index];
                             const trainingTime = filteredTrainingTimes[index];
                             const outlierCount = filteredOutlierCounts[index];
                             alert(`您点击了 ${model} 模型\n训练时间: ${trainingTime}秒\n检测到的离群值: ${outlierCount.toLocaleString()}`);
@@ -876,11 +1136,17 @@
         
         function drawModelPerformanceBarChart(data, modelSelect) {
             const ctx = document.getElementById('modelPerformanceBarChart').getContext('2d');
-            
-            // 使用从后端获取的实际数据
-            const allLabels = (data && data.modelPerformance && data.modelPerformance.labels) ? data.modelPerformance.labels : ['Isolation Forest', 'LOF', 'One-Class SVM'];
-            const accuracyData = (data && data.modelPerformance && data.modelPerformance.accuracy) ? data.modelPerformance.accuracy : [0.8168, 0.7786, 0.8036];
-            const f1Data = (data && data.modelPerformance && data.modelPerformance.f1Score) ? data.modelPerformance.f1Score : [0.3359, 0.1973, 0.2881];
+            const mp = data && data.modelPerformance;
+            const labelCount = mp && Array.isArray(mp.labels) ? mp.labels.length : 0;
+            const acc = mp && mp.accuracy;
+            const f1 = mp && mp.f1Score;
+            if (!labelCount || !Array.isArray(acc) || !Array.isArray(f1) ||
+                acc.length !== labelCount || f1.length !== labelCount) {
+                return emptyChartPlaceholder(ctx, '暂无模型性能数据（完全依赖接口返回，无演示占位）');
+            }
+            let allLabels = mp.labels;
+            let accuracyData = acc;
+            let f1Data = f1;
             
             // 根据模型选择过滤数据
             let labels, accuracy, f1Scores;
@@ -907,6 +1173,11 @@
                 f1Scores = f1Data;
             }
             
+            const accBg2 = labels.map(function (lb) { return algoMeta(lb).accBg; });
+            const accBr2 = labels.map(function (lb) { return algoMeta(lb).color; });
+            const f1Bg2 = labels.map(function (lb) { return algoMeta(lb).f1Bg; });
+            const f1Br2 = labels.map(function (lb) { return algoMeta(lb).color; });
+            
             return new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -914,19 +1185,15 @@
                     datasets: [{
                         label: '准确率',
                         data: accuracy,
-                        backgroundColor: '#4ECDC4',
-                        borderColor: '#4ECDC4',
-                        borderWidth: 1,
-                        hoverBackgroundColor: 'rgba(78, 205, 196, 0.8)',
-                        hoverBorderColor: 'rgba(78, 205, 196, 1)'
+                        backgroundColor: accBg2,
+                        borderColor: accBr2,
+                        borderWidth: 2
                     }, {
                         label: 'F1分数',
                         data: f1Scores,
-                        backgroundColor: '#FF6B6B',
-                        borderColor: '#FF6B6B',
-                        borderWidth: 1,
-                        hoverBackgroundColor: 'rgba(255, 107, 107, 0.8)',
-                        hoverBorderColor: 'rgba(255, 107, 107, 1)'
+                        backgroundColor: f1Bg2,
+                        borderColor: f1Br2,
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -977,11 +1244,15 @@
 
         function drawLargeDataBarChart(largeDataMetrics) {
             const ctx = document.getElementById('largeDataBarChart').getContext('2d');
-            
-            // 使用从后端获取的实际数据
-            const labels = (largeDataMetrics && largeDataMetrics.labels) ? largeDataMetrics.labels : ['胆固醇', '血红蛋白', '血小板', '肌酐'];
-            const normalData = (largeDataMetrics && largeDataMetrics.normalData) ? largeDataMetrics.normalData : [198, 145, 220, 75];
-            const outlierData = (largeDataMetrics && largeDataMetrics.outlierData) ? largeDataMetrics.outlierData : [245, 160, 280, 120];
+            const m = largeDataMetrics;
+            const n = m && Array.isArray(m.labels) ? m.labels.length : 0;
+            const normalData = m && m.normalData;
+            const outlierData = m && m.outlierData;
+            if (!n || !Array.isArray(normalData) || !Array.isArray(outlierData) ||
+                normalData.length !== n || outlierData.length !== n) {
+                return emptyChartPlaceholder(ctx, '暂无大数据指标对比（完全依赖接口返回）');
+            }
+            const labels = m.labels;
             
             return new Chart(ctx, {
                 type: 'bar',
@@ -1048,11 +1319,15 @@
         
         function drawSmallDataBarChart(smallDataMetrics) {
             const ctx = document.getElementById('smallDataBarChart').getContext('2d');
-            
-            // 使用从后端获取的实际数据
-            const labels = (smallDataMetrics && smallDataMetrics.labels) ? smallDataMetrics.labels : ['血糖', '甘油三酯', '白细胞', '淋巴细胞', 'ALT', 'AST', '尿素'];
-            const normalData = (smallDataMetrics && smallDataMetrics.normalData) ? smallDataMetrics.normalData : [5.0, 1.5, 6.5, 1.8, 25, 25, 5.0];
-            const outlierData = (smallDataMetrics && smallDataMetrics.outlierData) ? smallDataMetrics.outlierData : [6.5, 2.5, 8.5, 2.5, 45, 45, 7.5];
+            const m = smallDataMetrics;
+            const n = m && Array.isArray(m.labels) ? m.labels.length : 0;
+            const normalData = m && m.normalData;
+            const outlierData = m && m.outlierData;
+            if (!n || !Array.isArray(normalData) || !Array.isArray(outlierData) ||
+                normalData.length !== n || outlierData.length !== n) {
+                return emptyChartPlaceholder(ctx, '暂无小数据指标对比（完全依赖接口返回）');
+            }
+            const labels = m.labels;
             
             return new Chart(ctx, {
                 type: 'bar',

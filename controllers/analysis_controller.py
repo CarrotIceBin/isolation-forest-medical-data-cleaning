@@ -3,6 +3,14 @@
 """
 import os
 import sys
+
+# 保证在 Windows GBK 控制台下打印 ✓/✗ 等字符不会触发 UnicodeEncodeError，导致分析中断
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 import json
 import time
 import numpy as np
@@ -357,9 +365,8 @@ class AnalysisController:
             print(f"接收到分析请求: type={analysis_type}, model={model_select}")
             print("开始执行分析...")
             
-            # 创建数据处理器和离群值检测系统
-            # 使用与predict.py相同的数据文件路径
-            data_file = 'heart.csv'
+            # 创建数据处理器和离群值检测系统（相对项目根目录，避免启动目录不同找不到数据）
+            data_file = os.path.join(project_root, 'heart.csv')
             print(f"使用数据文件: {data_file}")
             print(f"文件是否存在: {os.path.exists(data_file)}")
             
@@ -390,8 +397,16 @@ class AnalysisController:
             X_full = df[feature_cols].values
             y_full = df.iloc[:, -1].values
             
-            # 使用10000个样本进行训练
-            sample_size = min(100000, len(X_full))
+            # 根据分析类型设置样本大小：快速分析使用较少样本，完整分析使用较多样本
+            if analysis_type == 'quick':
+                # 快速分析：使用20000条样本，减少训练时间
+                sample_size = min(200, len(X_full))
+                print("【快速分析模式】使用较少样本进行快速检测")
+            else:
+                # 完整分析：使用100000条样本，获得更全面准确的结果
+                sample_size = min(1000, len(X_full))
+                print("【完整分析模式】使用较多样本进行全面检测")
+            
             X = X_full[:sample_size]
             y = y_full[:sample_size]
             total_samples = len(X)
@@ -406,6 +421,42 @@ class AnalysisController:
             X_scaled = outlier_detector.scaler.transform(X)
             
             models_info = {}
+
+            import numpy as np
+            # 自适应阈值函数：根据分数分布自动确定离群值阈值
+            def adaptive_threshold(scores, method='iqr', k=1.5):
+                """
+                自适应阈值计算
+                method: 'iqr' - 四分位距法, 'std' - 标准差法, 'percentile' - 百分位数法
+                k: 阈值系数，越大越严格
+                """
+                import numpy as np
+                
+                if method == 'iqr':
+                    # IQR方法：Q3 + k*IQR 以上为异常
+                    q1 = np.percentile(scores, 25)
+                    q3 = np.percentile(scores, 75)
+                    iqr = q3 - q1
+                    threshold = q3 + k * iqr
+                    predictions = np.where(scores > threshold, -1, 1)
+                elif method == 'std':
+                    # 标准差方法：均值 + k*标准差 以上为异常
+                    mean = np.mean(scores)
+                    std = np.std(scores)
+                    threshold = mean + k * std
+                    predictions = np.where(scores > threshold, -1, 1)
+                elif method == 'percentile':
+                    # 百分位数方法：top k% 为异常
+                    threshold = np.percentile(scores, 100 - k)
+                    predictions = np.where(scores > threshold, -1, 1)
+                else:
+                    # 默认使用中位数绝对偏差 (MAD)
+                    median = np.median(scores)
+                    mad = np.median(np.abs(scores - median))
+                    threshold = median + k * mad
+                    predictions = np.where(scores > threshold, -1, 1)
+                
+                return predictions, threshold
             
             # 根据用户选择的模型进行训练
             if model_select == 'isolation_forest' or model_select == 'all':
@@ -415,22 +466,27 @@ class AnalysisController:
                 if_model = IsolationForest(
                     n_estimators=100,
                     max_samples=len(X),
-                    contamination=0.1,
+                    contamination='auto',  # 使用自适应
                     random_state=42,
                     n_jobs=-1
                 )
-                if_predictions = if_model.fit_predict(X_scaled)
+                if_model.fit(X_scaled)
                 if_scores = if_model.decision_function(X_scaled)
+                # 使用自适应阈值，IF使用更宽松的阈值(k=1.0)以检测更多离群值
+                if_predictions, if_threshold = adaptive_threshold(-if_scores, method='iqr', k=1.0)
                 if_time = time.time() - start_time
+                
+                outlier_count = np.sum(if_predictions == -1)
+                print(f"✓ 孤立森林训练完成，时间: {if_time:.2f}秒，检测到 {outlier_count} 个离群值 ({outlier_count/len(X)*100:.1f}%)")
                 
                 models_info['Isolation Forest'] = {
                     'model': if_model,
                     'predictions': if_predictions,
                     'scores': if_scores,
                     'time': if_time,
-                    'trained_samples': len(X)
+                    'trained_samples': len(X),
+                    'threshold': if_threshold
                 }
-                print(f"✓ 孤立森林训练完成，时间: {if_time:.2f}秒")
             
             if model_select == 'lof' or model_select == 'all':
                 print("训练LOF模型...")
@@ -438,22 +494,26 @@ class AnalysisController:
                 from sklearn.neighbors import LocalOutlierFactor
                 lof_model = LocalOutlierFactor(
                     n_neighbors=min(20, len(X)-1),
-                    contamination=0.1,
                     novelty=False,
                     n_jobs=-1
                 )
-                lof_predictions = lof_model.fit_predict(X_scaled)
+                lof_model.fit_predict(X_scaled)
                 lof_scores = -lof_model.negative_outlier_factor_
+                # 使用自适应阈值
+                lof_predictions, lof_threshold = adaptive_threshold(lof_scores, method='iqr', k=1.5)
                 lof_time = time.time() - start_time
+                
+                outlier_count = np.sum(lof_predictions == -1)
+                print(f"✓ LOF训练完成，时间: {lof_time:.2f}秒，检测到 {outlier_count} 个离群值 ({outlier_count/len(X)*100:.1f}%)")
                 
                 models_info['LOF'] = {
                     'model': lof_model,
                     'predictions': lof_predictions,
                     'scores': lof_scores,
                     'time': lof_time,
-                    'trained_samples': len(X)
+                    'trained_samples': len(X),
+                    'threshold': lof_threshold
                 }
-                print(f"✓ LOF训练完成，时间: {lof_time:.2f}秒")
             
             if model_select == 'one_class_svm' or model_select == 'all':
                 print("训练One-Class SVM模型...")
@@ -461,18 +521,50 @@ class AnalysisController:
                 from sklearn.svm import OneClassSVM
                 gamma = 1 / (X.shape[1] * X_scaled.var()) if X_scaled.var() > 0 else 'scale'
                 ocsvm_model = OneClassSVM(nu=0.1, kernel='rbf', gamma=gamma, tol=1e-3)
-                ocsvm_predictions = ocsvm_model.fit_predict(X_scaled)
+                ocsvm_model.fit(X_scaled)
                 ocsvm_scores = ocsvm_model.decision_function(X_scaled)
+                # 使用自适应阈值
+                ocsvm_predictions, ocsvm_threshold = adaptive_threshold(-ocsvm_scores, method='iqr', k=1.5)
                 ocsvm_time = time.time() - start_time
+                
+                outlier_count = np.sum(ocsvm_predictions == -1)
+                print(f"✓ One-Class SVM训练完成，时间: {ocsvm_time:.2f}秒，检测到 {outlier_count} 个离群值 ({outlier_count/len(X)*100:.1f}%)")
                 
                 models_info['One-Class SVM'] = {
                     'model': ocsvm_model,
                     'predictions': ocsvm_predictions,
                     'scores': ocsvm_scores,
                     'time': ocsvm_time,
-                    'trained_samples': len(X)
+                    'trained_samples': len(X),
+                    'threshold': ocsvm_threshold
                 }
-                print(f"✓ One-Class SVM训练完成，时间: {ocsvm_time:.2f}秒")
+            
+            # 比较IF和LOF检测到的离群值差异（当两种算法都训练时）
+            if 'Isolation Forest' in models_info and 'LOF' in models_info:
+                print("\n" + "="*60)
+                print("算法离群值检测结果对比")
+                print("="*60)
+                
+                if_predictions_arr = models_info['Isolation Forest']['predictions']
+                lof_predictions_arr = models_info['LOF']['predictions']
+                
+                # 获取离群值索引（-1表示离群值）
+                import numpy as np
+                if_outliers = set(np.where(if_predictions_arr == -1)[0])
+                lof_outliers = set(np.where(lof_predictions_arr == -1)[0])
+                
+                # 计算交集和差异
+                common = if_outliers & lof_outliers
+                only_if = if_outliers - lof_outliers
+                only_lof = lof_outliers - if_outliers
+                
+                print(f"孤立森林检测到的离群值总数: {len(if_outliers)}")
+                print(f"LOF检测到的离群值总数: {len(lof_outliers)}")
+                print(f"共同检测到的离群值: {len(common)} ({len(common)/len(if_outliers)*100:.1f}%)")
+                print(f"仅孤立森林检测到的: {len(only_if)} ({len(only_if)/len(if_outliers)*100:.1f}%)")
+                print(f"仅LOF检测到的: {len(only_lof)} ({len(only_lof)/len(lof_outliers)*100:.1f}%)")
+                print(f"一致性比例: {len(common)/((len(if_outliers)+len(lof_outliers))/2)*100:.1f}%")
+                print("="*60)
             
             # 设置outlier_detector的models，以便evaluate_models方法能够找到模型
             outlier_detector.models = models_info
@@ -644,13 +736,19 @@ class AnalysisController:
                     },
                     'largeDataMetrics': {
                         'labels': large_data_labels,
-                        'normalData': large_data_normal,
-                        'outlierData': large_data_outlier
+                        'normalData': [float(v) for v in large_data_normal],
+                        'outlierData': [float(v) for v in large_data_outlier]
                     },
                     'smallDataMetrics': {
                         'labels': small_data_labels,
-                        'normalData': small_data_normal,
-                        'outlierData': small_data_outlier
+                        'normalData': [float(v) for v in small_data_normal],
+                        'outlierData': [float(v) for v in small_data_outlier]
+                    },
+                    # 检测超参数信息（使用自适应阈值，无固定 contamination）
+                    'detectionHyperparameters': {
+                        'threshold_method': 'iqr',
+                        'threshold_k': 1.5,
+                        'note': '使用自适应阈值，根据数据分布自动确定离群值'
                     },
                     'detailedResults': detailed_results
                 }

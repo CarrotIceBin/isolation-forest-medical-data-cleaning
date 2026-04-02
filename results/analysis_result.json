@@ -1,41 +1,41 @@
 {
   "success": true,
   "data": {
-    "totalSamples": 100000,
-    "abnormalCount": 10000,
-    "abnormalRatio": "10.00%",
-    "analysisTime": "13.1270s",
+    "totalSamples": 1000,
+    "abnormalCount": 4,
+    "abnormalRatio": "0.40%",
+    "analysisTime": "0.0181s",
     "algorithmTimes": {
-      "LOF": 13.126967668533325
+      "One-Class SVM": 0.018112897872924805
     },
     "modelPerformance": {
       "labels": [
-        "LOF"
+        "One-Class SVM"
       ],
       "accuracy": [
-        0.78262
+        0.823
       ],
       "f1Score": [
-        0.21187731128997173
+        0.03278688524590164
       ]
     },
     "outlierDetection": {
       "labels": [
-        "LOF"
+        "One-Class SVM"
       ],
       "counts": [
-        10000
+        4
       ]
     },
     "clinicalValidation": {
       "labels": [
-        "LOF"
+        "One-Class SVM"
       ],
       "plausible": [
-        267
+        0
       ],
       "implausible": [
-        9733
+        4
       ]
     },
     "largeDataMetrics": {
@@ -45,14 +45,14 @@
         "肌酐"
       ],
       "normalData": [
-        217.0,
+        216.0,
         220.0,
         74.0
       ],
       "outlierData": [
-        217.0,
-        219.0,
-        75.0
+        203.0,
+        253.0,
+        91.5
       ]
     },
     "smallDataMetrics": {
@@ -68,24 +68,29 @@
       ],
       "normalData": [
         5.0,
-        1.49,
-        6.5,
+        1.54,
+        6.4,
         1.8,
-        24.0,
+        25.0,
         24.0,
         5.0,
         4.8
       ],
       "outlierData": [
-        5.0,
-        1.55,
-        6.5,
-        1.8,
-        25.0,
-        25.0,
-        5.0,
-        4.8
+        7.4,
+        1.495,
+        7.3,
+        1.6500000000000001,
+        17.5,
+        27.5,
+        5.5,
+        4.699999999999999
       ]
+    },
+    "detectionHyperparameters": {
+      "threshold_method": "iqr",
+      "threshold_k": 1.5,
+      "note": "使用自适应阈值，根据数据分布自动确定离群值"
     },
     "detailedResults": [
       {
@@ -95,8 +100,8 @@
         "blood_pressure": 120,
         "cholesterol": 180,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 0.9944,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.589,
         "evaluation": "正常"
       },
       {
@@ -106,8 +111,8 @@
         "blood_pressure": 121,
         "cholesterol": 181,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0362,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.3585,
         "evaluation": "正常"
       },
       {
@@ -117,8 +122,8 @@
         "blood_pressure": 122,
         "cholesterol": 182,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0489,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.1692,
         "evaluation": "正常"
       },
       {
@@ -128,8 +133,8 @@
         "blood_pressure": 123,
         "cholesterol": 183,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.1025,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.0063,
         "evaluation": "正常"
       },
       {
@@ -139,8 +144,8 @@
         "blood_pressure": 124,
         "cholesterol": 184,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0418,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.9025,
         "evaluation": "正常"
       },
       {
@@ -150,8 +155,8 @@
         "blood_pressure": 125,
         "cholesterol": 185,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.011,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 4.4442,
         "evaluation": "正常"
       },
       {
@@ -161,8 +166,8 @@
         "blood_pressure": 126,
         "cholesterol": 186,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0946,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.8562,
         "evaluation": "正常"
       },
       {
@@ -172,8 +177,8 @@
         "blood_pressure": 127,
         "cholesterol": 187,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.1391,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.3942,
         "evaluation": "正常"
       },
       {
@@ -183,9 +188,9 @@
         "blood_pressure": 128,
         "cholesterol": 188,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "离群值",
-        "LOF_score": 1.1873,
-        "evaluation": "需要进一步检查"
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": -0.2857,
+        "evaluation": "正常"
       },
       {
         "patient_id": "P10",
@@ -194,8 +199,8 @@
         "blood_pressure": 129,
         "cholesterol": 189,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0704,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.1519,
         "evaluation": "正常"
       },
       {
@@ -205,8 +210,8 @@
         "blood_pressure": 130,
         "cholesterol": 190,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.035,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.5438,
         "evaluation": "正常"
       },
       {
@@ -216,8 +221,8 @@
         "blood_pressure": 131,
         "cholesterol": 191,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0687,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.8791,
         "evaluation": "正常"
       },
       {
@@ -227,8 +232,8 @@
         "blood_pressure": 132,
         "cholesterol": 192,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0426,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.6502,
         "evaluation": "正常"
       },
       {
@@ -238,8 +243,8 @@
         "blood_pressure": 133,
         "cholesterol": 193,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0638,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.2148,
         "evaluation": "正常"
       },
       {
@@ -249,8 +254,8 @@
         "blood_pressure": 134,
         "cholesterol": 194,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0592,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.3383,
         "evaluation": "正常"
       },
       {
@@ -260,8 +265,8 @@
         "blood_pressure": 135,
         "cholesterol": 195,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0161,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.3448,
         "evaluation": "正常"
       },
       {
@@ -271,9 +276,9 @@
         "blood_pressure": 136,
         "cholesterol": 196,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "离群值",
-        "LOF_score": 1.1838,
-        "evaluation": "需要进一步检查"
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": -0.0002,
+        "evaluation": "正常"
       },
       {
         "patient_id": "P18",
@@ -282,8 +287,8 @@
         "blood_pressure": 137,
         "cholesterol": 197,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0681,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.243,
         "evaluation": "正常"
       },
       {
@@ -293,9 +298,9 @@
         "blood_pressure": 138,
         "cholesterol": 198,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "离群值",
-        "LOF_score": 1.1951,
-        "evaluation": "需要进一步检查"
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": -0.0001,
+        "evaluation": "正常"
       },
       {
         "patient_id": "P20",
@@ -304,8 +309,8 @@
         "blood_pressure": 139,
         "cholesterol": 199,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0778,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.5529,
         "evaluation": "正常"
       },
       {
@@ -315,8 +320,8 @@
         "blood_pressure": 140,
         "cholesterol": 200,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 0.9907,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 4.3559,
         "evaluation": "正常"
       },
       {
@@ -326,9 +331,9 @@
         "blood_pressure": 141,
         "cholesterol": 201,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "离群值",
-        "LOF_score": 1.183,
-        "evaluation": "需要进一步检查"
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.0,
+        "evaluation": "正常"
       },
       {
         "patient_id": "P23",
@@ -337,8 +342,8 @@
         "blood_pressure": 142,
         "cholesterol": 202,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.1101,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.3858,
         "evaluation": "正常"
       },
       {
@@ -348,8 +353,8 @@
         "blood_pressure": 143,
         "cholesterol": 203,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.1217,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.2816,
         "evaluation": "正常"
       },
       {
@@ -359,8 +364,8 @@
         "blood_pressure": 144,
         "cholesterol": 204,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0372,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.7412,
         "evaluation": "正常"
       },
       {
@@ -370,9 +375,9 @@
         "blood_pressure": 145,
         "cholesterol": 205,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "离群值",
-        "LOF_score": 1.1526,
-        "evaluation": "需要进一步检查"
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": -0.0001,
+        "evaluation": "正常"
       },
       {
         "patient_id": "P27",
@@ -381,8 +386,8 @@
         "blood_pressure": 146,
         "cholesterol": 206,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.047,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.4431,
         "evaluation": "正常"
       },
       {
@@ -392,8 +397,8 @@
         "blood_pressure": 147,
         "cholesterol": 207,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.1023,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": -0.8775,
         "evaluation": "正常"
       },
       {
@@ -403,8 +408,8 @@
         "blood_pressure": 148,
         "cholesterol": 208,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0115,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.4282,
         "evaluation": "正常"
       },
       {
@@ -414,8 +419,8 @@
         "blood_pressure": 149,
         "cholesterol": 209,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0863,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.4363,
         "evaluation": "正常"
       },
       {
@@ -425,8 +430,8 @@
         "blood_pressure": 120,
         "cholesterol": 210,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0483,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.8126,
         "evaluation": "正常"
       },
       {
@@ -436,8 +441,8 @@
         "blood_pressure": 121,
         "cholesterol": 211,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 0.9997,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.1244,
         "evaluation": "正常"
       },
       {
@@ -447,8 +452,8 @@
         "blood_pressure": 122,
         "cholesterol": 212,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0098,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.1928,
         "evaluation": "正常"
       },
       {
@@ -458,8 +463,8 @@
         "blood_pressure": 123,
         "cholesterol": 213,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0196,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.4643,
         "evaluation": "正常"
       },
       {
@@ -469,8 +474,8 @@
         "blood_pressure": 124,
         "cholesterol": 214,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0891,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.3016,
         "evaluation": "正常"
       },
       {
@@ -480,8 +485,8 @@
         "blood_pressure": 125,
         "cholesterol": 215,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0592,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.8066,
         "evaluation": "正常"
       },
       {
@@ -491,8 +496,8 @@
         "blood_pressure": 126,
         "cholesterol": 216,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.009,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.7465,
         "evaluation": "正常"
       },
       {
@@ -502,8 +507,8 @@
         "blood_pressure": 127,
         "cholesterol": 217,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0383,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": -2.5955,
         "evaluation": "正常"
       },
       {
@@ -513,8 +518,8 @@
         "blood_pressure": 128,
         "cholesterol": 218,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0492,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.0564,
         "evaluation": "正常"
       },
       {
@@ -524,8 +529,8 @@
         "blood_pressure": 129,
         "cholesterol": 219,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0916,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.2334,
         "evaluation": "正常"
       },
       {
@@ -535,8 +540,8 @@
         "blood_pressure": 130,
         "cholesterol": 220,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0915,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.7701,
         "evaluation": "正常"
       },
       {
@@ -546,8 +551,8 @@
         "blood_pressure": 131,
         "cholesterol": 221,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0255,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.4856,
         "evaluation": "正常"
       },
       {
@@ -557,9 +562,9 @@
         "blood_pressure": 132,
         "cholesterol": 222,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "离群值",
-        "LOF_score": 1.16,
-        "evaluation": "需要进一步检查"
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.0462,
+        "evaluation": "正常"
       },
       {
         "patient_id": "P44",
@@ -568,8 +573,8 @@
         "blood_pressure": 133,
         "cholesterol": 223,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0407,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.2237,
         "evaluation": "正常"
       },
       {
@@ -579,8 +584,8 @@
         "blood_pressure": 134,
         "cholesterol": 224,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.089,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 1.8494,
         "evaluation": "正常"
       },
       {
@@ -590,8 +595,8 @@
         "blood_pressure": 135,
         "cholesterol": 225,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0395,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.3027,
         "evaluation": "正常"
       },
       {
@@ -601,8 +606,8 @@
         "blood_pressure": 136,
         "cholesterol": 226,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.138,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.5797,
         "evaluation": "正常"
       },
       {
@@ -612,8 +617,8 @@
         "blood_pressure": 137,
         "cholesterol": 227,
         "blood_sugar": 7.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0112,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 2.8586,
         "evaluation": "正常"
       },
       {
@@ -623,8 +628,8 @@
         "blood_pressure": 138,
         "cholesterol": 228,
         "blood_sugar": 5.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.1169,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 0.732,
         "evaluation": "正常"
       },
       {
@@ -634,8 +639,8 @@
         "blood_pressure": 139,
         "cholesterol": 229,
         "blood_sugar": 6.0,
-        "LOF_is_outlier": "正常",
-        "LOF_score": 1.0527,
+        "One-Class SVM_is_outlier": "正常",
+        "One-Class SVM_score": 3.2539,
         "evaluation": "正常"
       }
     ]

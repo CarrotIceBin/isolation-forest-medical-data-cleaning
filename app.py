@@ -1,6 +1,16 @@
 """
 医疗数据离群值检测系统 - MVC架构主应用
 """
+import sys
+
+# Windows 控制台默认 GBK，模型层大量 print 含 ✓/✗ 等字符，不重定向编码会导致分析中途异常
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import os
@@ -26,7 +36,7 @@ def index():
 def analyze():
     """分析API端点"""
     try:
-        data = request.json
+        data = request.get_json(silent=True) or {}
         analysis_type = data.get('analysisType', 'full')
         model_select = data.get('modelSelect', 'all')
         
