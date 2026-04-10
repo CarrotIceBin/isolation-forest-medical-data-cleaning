@@ -627,7 +627,7 @@
                     const hp = data.data.detectionHyperparameters;
                     if (ratioHint) {
                         ratioHint.textContent = hp
-                            ? '来自接口：异常数=模型预测标签统计，非前端固定值。IF/LOF 使用 contamination=' + hp.contamination + '，故占比常接近 ' + (hp.contamination * 100) + '%；One-Class SVM 使用 nu=' + hp.one_class_nu + '。'
+                            ? '来自接口：异常数=模型预测标签统计，非前端固定值。使用自适应阈值（' + hp.threshold_method + '方法，k=' + hp.threshold_k + '），根据数据分布自动确定离群值。'
                             : '';
                     }
                     

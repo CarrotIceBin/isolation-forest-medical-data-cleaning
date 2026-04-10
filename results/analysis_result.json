@@ -1,41 +1,59 @@
 {
   "success": true,
   "data": {
-    "totalSamples": 1000,
-    "abnormalCount": 4,
-    "abnormalRatio": "0.40%",
-    "analysisTime": "0.0181s",
+    "totalSamples": 100000,
+    "abnormalCount": 4771,
+    "abnormalRatio": "4.77%",
+    "analysisTime": "2.0544s",
     "algorithmTimes": {
-      "One-Class SVM": 0.018112897872924805
+      "Isolation Forest": 2.05436372756958,
+      "LOF": 9.087894678115845,
+      "One-Class SVM": 276.96420192718506
     },
     "modelPerformance": {
       "labels": [
+        "Isolation Forest",
+        "LOF",
         "One-Class SVM"
       ],
       "accuracy": [
-        0.823
+        0.84241,
+        0.82098,
+        0.82596
       ],
       "f1Score": [
-        0.03278688524590164
+        0.2949939605422091,
+        0.07588271732397274,
+        0.05842891149101926
       ]
     },
     "outlierDetection": {
       "labels": [
+        "Isolation Forest",
+        "LOF",
         "One-Class SVM"
       ],
       "counts": [
-        4
+        4771,
+        1790,
+        902
       ]
     },
     "clinicalValidation": {
       "labels": [
+        "Isolation Forest",
+        "LOF",
         "One-Class SVM"
       ],
       "plausible": [
-        0
+        26,
+        22,
+        9
       ],
       "implausible": [
-        4
+        4745,
+        1768,
+        893
       ]
     },
     "largeDataMetrics": {
@@ -47,12 +65,12 @@
       "normalData": [
         216.0,
         220.0,
-        74.0
+        75.0
       ],
       "outlierData": [
-        203.0,
-        253.0,
-        91.5
+        241.0,
+        219.0,
+        75.0
       ]
     },
     "smallDataMetrics": {
@@ -68,23 +86,23 @@
       ],
       "normalData": [
         5.0,
-        1.54,
-        6.4,
+        1.5,
+        6.5,
         1.8,
-        25.0,
+        24.0,
         24.0,
         5.0,
         4.8
       ],
       "outlierData": [
-        7.4,
-        1.495,
-        7.3,
-        1.6500000000000001,
-        17.5,
-        27.5,
         5.5,
-        4.699999999999999
+        1.53,
+        6.5,
+        1.8,
+        25.0,
+        25.0,
+        5.0,
+        4.8
       ]
     },
     "detectionHyperparameters": {
@@ -100,8 +118,8 @@
         "blood_pressure": 120,
         "cholesterol": 180,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.589,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1045,
         "evaluation": "正常"
       },
       {
@@ -111,8 +129,8 @@
         "blood_pressure": 121,
         "cholesterol": 181,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.3585,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0845,
         "evaluation": "正常"
       },
       {
@@ -122,8 +140,8 @@
         "blood_pressure": 122,
         "cholesterol": 182,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.1692,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0767,
         "evaluation": "正常"
       },
       {
@@ -133,8 +151,8 @@
         "blood_pressure": 123,
         "cholesterol": 183,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.0063,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0777,
         "evaluation": "正常"
       },
       {
@@ -144,8 +162,8 @@
         "blood_pressure": 124,
         "cholesterol": 184,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.9025,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0924,
         "evaluation": "正常"
       },
       {
@@ -155,8 +173,8 @@
         "blood_pressure": 125,
         "cholesterol": 185,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 4.4442,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.105,
         "evaluation": "正常"
       },
       {
@@ -166,8 +184,8 @@
         "blood_pressure": 126,
         "cholesterol": 186,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8562,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0859,
         "evaluation": "正常"
       },
       {
@@ -177,8 +195,8 @@
         "blood_pressure": 127,
         "cholesterol": 187,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.3942,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0524,
         "evaluation": "正常"
       },
       {
@@ -188,8 +206,8 @@
         "blood_pressure": 128,
         "cholesterol": 188,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.2857,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0279,
         "evaluation": "正常"
       },
       {
@@ -199,8 +217,8 @@
         "blood_pressure": 129,
         "cholesterol": 189,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.1519,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0808,
         "evaluation": "正常"
       },
       {
@@ -210,8 +228,8 @@
         "blood_pressure": 130,
         "cholesterol": 190,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.5438,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0939,
         "evaluation": "正常"
       },
       {
@@ -221,8 +239,8 @@
         "blood_pressure": 131,
         "cholesterol": 191,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8791,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0831,
         "evaluation": "正常"
       },
       {
@@ -232,8 +250,8 @@
         "blood_pressure": 132,
         "cholesterol": 192,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.6502,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0883,
         "evaluation": "正常"
       },
       {
@@ -243,8 +261,8 @@
         "blood_pressure": 133,
         "cholesterol": 193,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.2148,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0618,
         "evaluation": "正常"
       },
       {
@@ -254,8 +272,8 @@
         "blood_pressure": 134,
         "cholesterol": 194,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.3383,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0301,
         "evaluation": "正常"
       },
       {
@@ -265,8 +283,8 @@
         "blood_pressure": 135,
         "cholesterol": 195,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.3448,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0622,
         "evaluation": "正常"
       },
       {
@@ -276,8 +294,8 @@
         "blood_pressure": 136,
         "cholesterol": 196,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.0002,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0416,
         "evaluation": "正常"
       },
       {
@@ -287,8 +305,8 @@
         "blood_pressure": 137,
         "cholesterol": 197,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.243,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
         "evaluation": "正常"
       },
       {
@@ -298,8 +316,8 @@
         "blood_pressure": 138,
         "cholesterol": 198,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.0001,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0276,
         "evaluation": "正常"
       },
       {
@@ -309,8 +327,8 @@
         "blood_pressure": 139,
         "cholesterol": 199,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.5529,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0412,
         "evaluation": "正常"
       },
       {
@@ -320,8 +338,8 @@
         "blood_pressure": 140,
         "cholesterol": 200,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 4.3559,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1095,
         "evaluation": "正常"
       },
       {
@@ -331,8 +349,8 @@
         "blood_pressure": 141,
         "cholesterol": 201,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0357,
         "evaluation": "正常"
       },
       {
@@ -342,8 +360,8 @@
         "blood_pressure": 142,
         "cholesterol": 202,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.3858,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0503,
         "evaluation": "正常"
       },
       {
@@ -353,8 +371,8 @@
         "blood_pressure": 143,
         "cholesterol": 203,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.2816,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0467,
         "evaluation": "正常"
       },
       {
@@ -364,8 +382,8 @@
         "blood_pressure": 144,
         "cholesterol": 204,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.7412,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0802,
         "evaluation": "正常"
       },
       {
@@ -375,8 +393,8 @@
         "blood_pressure": 145,
         "cholesterol": 205,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.0001,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.053,
         "evaluation": "正常"
       },
       {
@@ -386,8 +404,8 @@
         "blood_pressure": 146,
         "cholesterol": 206,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.4431,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0532,
         "evaluation": "正常"
       },
       {
@@ -397,9 +415,9 @@
         "blood_pressure": 147,
         "cholesterol": 207,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.8775,
-        "evaluation": "正常"
+        "Isolation Forest_is_outlier": "离群值",
+        "Isolation Forest_score": -0.002,
+        "evaluation": "需要进一步检查"
       },
       {
         "patient_id": "P29",
@@ -408,8 +426,8 @@
         "blood_pressure": 148,
         "cholesterol": 208,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.4282,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
         "evaluation": "正常"
       },
       {
@@ -419,8 +437,8 @@
         "blood_pressure": 149,
         "cholesterol": 209,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.4363,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0565,
         "evaluation": "正常"
       },
       {
@@ -430,8 +448,8 @@
         "blood_pressure": 120,
         "cholesterol": 210,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8126,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0865,
         "evaluation": "正常"
       },
       {
@@ -441,8 +459,8 @@
         "blood_pressure": 121,
         "cholesterol": 211,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.1244,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0644,
         "evaluation": "正常"
       },
       {
@@ -452,8 +470,8 @@
         "blood_pressure": 122,
         "cholesterol": 212,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.1928,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
         "evaluation": "正常"
       },
       {
@@ -463,8 +481,8 @@
         "blood_pressure": 123,
         "cholesterol": 213,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.4643,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.065,
         "evaluation": "正常"
       },
       {
@@ -474,8 +492,8 @@
         "blood_pressure": 124,
         "cholesterol": 214,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.3016,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0716,
         "evaluation": "正常"
       },
       {
@@ -485,8 +503,8 @@
         "blood_pressure": 125,
         "cholesterol": 215,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8066,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0799,
         "evaluation": "正常"
       },
       {
@@ -496,8 +514,8 @@
         "blood_pressure": 126,
         "cholesterol": 216,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.7465,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
         "evaluation": "正常"
       },
       {
@@ -507,8 +525,8 @@
         "blood_pressure": 127,
         "cholesterol": 217,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -2.5955,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0294,
         "evaluation": "正常"
       },
       {
@@ -518,8 +536,8 @@
         "blood_pressure": 128,
         "cholesterol": 218,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.0564,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0773,
         "evaluation": "正常"
       },
       {
@@ -529,8 +547,8 @@
         "blood_pressure": 129,
         "cholesterol": 219,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.2334,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0427,
         "evaluation": "正常"
       },
       {
@@ -540,8 +558,8 @@
         "blood_pressure": 130,
         "cholesterol": 220,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.7701,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0491,
         "evaluation": "正常"
       },
       {
@@ -551,8 +569,8 @@
         "blood_pressure": 131,
         "cholesterol": 221,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.4856,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
         "evaluation": "正常"
       },
       {
@@ -562,8 +580,8 @@
         "blood_pressure": 132,
         "cholesterol": 222,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.0462,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0402,
         "evaluation": "正常"
       },
       {
@@ -573,8 +591,8 @@
         "blood_pressure": 133,
         "cholesterol": 223,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.2237,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0973,
         "evaluation": "正常"
       },
       {
@@ -584,8 +602,8 @@
         "blood_pressure": 134,
         "cholesterol": 224,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8494,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0327,
         "evaluation": "正常"
       },
       {
@@ -595,8 +613,8 @@
         "blood_pressure": 135,
         "cholesterol": 225,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.3027,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0819,
         "evaluation": "正常"
       },
       {
@@ -606,8 +624,8 @@
         "blood_pressure": 136,
         "cholesterol": 226,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.5797,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
         "evaluation": "正常"
       },
       {
@@ -617,8 +635,8 @@
         "blood_pressure": 137,
         "cholesterol": 227,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.8586,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1007,
         "evaluation": "正常"
       },
       {
@@ -628,8 +646,8 @@
         "blood_pressure": 138,
         "cholesterol": 228,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.732,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0486,
         "evaluation": "正常"
       },
       {
@@ -639,8 +657,8 @@
         "blood_pressure": 139,
         "cholesterol": 229,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.2539,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0725,
         "evaluation": "正常"
       }
     ]

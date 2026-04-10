@@ -400,11 +400,11 @@ class AnalysisController:
             # 根据分析类型设置样本大小：快速分析使用较少样本，完整分析使用较多样本
             if analysis_type == 'quick':
                 # 快速分析：使用20000条样本，减少训练时间
-                sample_size = min(200, len(X_full))
+                sample_size = min(20000, len(X_full))
                 print("【快速分析模式】使用较少样本进行快速检测")
             else:
                 # 完整分析：使用100000条样本，获得更全面准确的结果
-                sample_size = min(1000, len(X_full))
+                sample_size = min(100000, len(X_full))
                 print("【完整分析模式】使用较多样本进行全面检测")
             
             X = X_full[:sample_size]

@@ -1,12 +1,12 @@
 {
-  "One-Class SVM": {
-    "model_name": "One-Class SVM",
-    "analysis_time": 0.018112897872924805,
-    "outlier_count": 4,
-    "accuracy": 0.823,
-    "f1_score": 0.03278688524590164,
-    "clinical_plausible": 0,
-    "clinical_implausible": 4,
+  "Isolation Forest": {
+    "model_name": "Isolation Forest",
+    "analysis_time": 2.05436372756958,
+    "outlier_count": 4771,
+    "accuracy": 0.84241,
+    "f1_score": 0.2949939605422091,
+    "clinical_plausible": 26,
+    "clinical_implausible": 4745,
     "detailed_results": [
       {
         "patient_id": "P1",
@@ -15,8 +15,8 @@
         "blood_pressure": 120,
         "cholesterol": 180,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.589,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1045,
         "evaluation": "正常"
       },
       {
@@ -26,8 +26,8 @@
         "blood_pressure": 121,
         "cholesterol": 181,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.3585,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0845,
         "evaluation": "正常"
       },
       {
@@ -37,8 +37,8 @@
         "blood_pressure": 122,
         "cholesterol": 182,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.1692,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0767,
         "evaluation": "正常"
       },
       {
@@ -48,8 +48,8 @@
         "blood_pressure": 123,
         "cholesterol": 183,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.0063,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0777,
         "evaluation": "正常"
       },
       {
@@ -59,8 +59,8 @@
         "blood_pressure": 124,
         "cholesterol": 184,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.9025,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0924,
         "evaluation": "正常"
       },
       {
@@ -70,8 +70,8 @@
         "blood_pressure": 125,
         "cholesterol": 185,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 4.4442,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.105,
         "evaluation": "正常"
       },
       {
@@ -81,8 +81,8 @@
         "blood_pressure": 126,
         "cholesterol": 186,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8562,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0859,
         "evaluation": "正常"
       },
       {
@@ -92,8 +92,8 @@
         "blood_pressure": 127,
         "cholesterol": 187,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.3942,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0524,
         "evaluation": "正常"
       },
       {
@@ -103,8 +103,8 @@
         "blood_pressure": 128,
         "cholesterol": 188,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.2857,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0279,
         "evaluation": "正常"
       },
       {
@@ -114,8 +114,8 @@
         "blood_pressure": 129,
         "cholesterol": 189,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.1519,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0808,
         "evaluation": "正常"
       },
       {
@@ -125,8 +125,8 @@
         "blood_pressure": 130,
         "cholesterol": 190,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.5438,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0939,
         "evaluation": "正常"
       },
       {
@@ -136,8 +136,8 @@
         "blood_pressure": 131,
         "cholesterol": 191,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8791,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0831,
         "evaluation": "正常"
       },
       {
@@ -147,8 +147,8 @@
         "blood_pressure": 132,
         "cholesterol": 192,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.6502,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0883,
         "evaluation": "正常"
       },
       {
@@ -158,8 +158,8 @@
         "blood_pressure": 133,
         "cholesterol": 193,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.2148,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0618,
         "evaluation": "正常"
       },
       {
@@ -169,8 +169,8 @@
         "blood_pressure": 134,
         "cholesterol": 194,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.3383,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0301,
         "evaluation": "正常"
       },
       {
@@ -180,8 +180,8 @@
         "blood_pressure": 135,
         "cholesterol": 195,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.3448,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0622,
         "evaluation": "正常"
       },
       {
@@ -191,8 +191,8 @@
         "blood_pressure": 136,
         "cholesterol": 196,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.0002,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0416,
         "evaluation": "正常"
       },
       {
@@ -202,8 +202,8 @@
         "blood_pressure": 137,
         "cholesterol": 197,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.243,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
         "evaluation": "正常"
       },
       {
@@ -213,8 +213,8 @@
         "blood_pressure": 138,
         "cholesterol": 198,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.0001,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0276,
         "evaluation": "正常"
       },
       {
@@ -224,8 +224,8 @@
         "blood_pressure": 139,
         "cholesterol": 199,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.5529,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0412,
         "evaluation": "正常"
       },
       {
@@ -235,8 +235,8 @@
         "blood_pressure": 140,
         "cholesterol": 200,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 4.3559,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1095,
         "evaluation": "正常"
       },
       {
@@ -246,8 +246,8 @@
         "blood_pressure": 141,
         "cholesterol": 201,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0357,
         "evaluation": "正常"
       },
       {
@@ -257,8 +257,8 @@
         "blood_pressure": 142,
         "cholesterol": 202,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.3858,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0503,
         "evaluation": "正常"
       },
       {
@@ -268,8 +268,8 @@
         "blood_pressure": 143,
         "cholesterol": 203,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.2816,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0467,
         "evaluation": "正常"
       },
       {
@@ -279,8 +279,8 @@
         "blood_pressure": 144,
         "cholesterol": 204,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.7412,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0802,
         "evaluation": "正常"
       },
       {
@@ -290,8 +290,8 @@
         "blood_pressure": 145,
         "cholesterol": 205,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.0001,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.053,
         "evaluation": "正常"
       },
       {
@@ -301,8 +301,8 @@
         "blood_pressure": 146,
         "cholesterol": 206,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.4431,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0532,
         "evaluation": "正常"
       },
       {
@@ -312,9 +312,9 @@
         "blood_pressure": 147,
         "cholesterol": 207,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -0.8775,
-        "evaluation": "正常"
+        "Isolation Forest_is_outlier": "离群值",
+        "Isolation Forest_score": -0.002,
+        "evaluation": "需要进一步检查"
       },
       {
         "patient_id": "P29",
@@ -323,8 +323,8 @@
         "blood_pressure": 148,
         "cholesterol": 208,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.4282,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
         "evaluation": "正常"
       },
       {
@@ -334,8 +334,8 @@
         "blood_pressure": 149,
         "cholesterol": 209,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.4363,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0565,
         "evaluation": "正常"
       },
       {
@@ -345,8 +345,8 @@
         "blood_pressure": 120,
         "cholesterol": 210,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8126,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0865,
         "evaluation": "正常"
       },
       {
@@ -356,8 +356,8 @@
         "blood_pressure": 121,
         "cholesterol": 211,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.1244,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0644,
         "evaluation": "正常"
       },
       {
@@ -367,8 +367,8 @@
         "blood_pressure": 122,
         "cholesterol": 212,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.1928,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
         "evaluation": "正常"
       },
       {
@@ -378,8 +378,8 @@
         "blood_pressure": 123,
         "cholesterol": 213,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.4643,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.065,
         "evaluation": "正常"
       },
       {
@@ -389,8 +389,8 @@
         "blood_pressure": 124,
         "cholesterol": 214,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.3016,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0716,
         "evaluation": "正常"
       },
       {
@@ -400,8 +400,8 @@
         "blood_pressure": 125,
         "cholesterol": 215,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8066,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0799,
         "evaluation": "正常"
       },
       {
@@ -411,8 +411,8 @@
         "blood_pressure": 126,
         "cholesterol": 216,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.7465,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
         "evaluation": "正常"
       },
       {
@@ -422,8 +422,8 @@
         "blood_pressure": 127,
         "cholesterol": 217,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": -2.5955,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0294,
         "evaluation": "正常"
       },
       {
@@ -433,8 +433,8 @@
         "blood_pressure": 128,
         "cholesterol": 218,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.0564,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0773,
         "evaluation": "正常"
       },
       {
@@ -444,8 +444,8 @@
         "blood_pressure": 129,
         "cholesterol": 219,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.2334,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0427,
         "evaluation": "正常"
       },
       {
@@ -455,8 +455,8 @@
         "blood_pressure": 130,
         "cholesterol": 220,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.7701,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0491,
         "evaluation": "正常"
       },
       {
@@ -466,8 +466,8 @@
         "blood_pressure": 131,
         "cholesterol": 221,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.4856,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
         "evaluation": "正常"
       },
       {
@@ -477,8 +477,8 @@
         "blood_pressure": 132,
         "cholesterol": 222,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.0462,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0402,
         "evaluation": "正常"
       },
       {
@@ -488,8 +488,8 @@
         "blood_pressure": 133,
         "cholesterol": 223,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.2237,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0973,
         "evaluation": "正常"
       },
       {
@@ -499,8 +499,8 @@
         "blood_pressure": 134,
         "cholesterol": 224,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 1.8494,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0327,
         "evaluation": "正常"
       },
       {
@@ -510,8 +510,8 @@
         "blood_pressure": 135,
         "cholesterol": 225,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.3027,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0819,
         "evaluation": "正常"
       },
       {
@@ -521,8 +521,8 @@
         "blood_pressure": 136,
         "cholesterol": 226,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.5797,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
         "evaluation": "正常"
       },
       {
@@ -532,8 +532,8 @@
         "blood_pressure": 137,
         "cholesterol": 227,
         "blood_sugar": 7.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 2.8586,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1007,
         "evaluation": "正常"
       },
       {
@@ -543,8 +543,8 @@
         "blood_pressure": 138,
         "cholesterol": 228,
         "blood_sugar": 5.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 0.732,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0486,
         "evaluation": "正常"
       },
       {
@@ -554,8 +554,1130 @@
         "blood_pressure": 139,
         "cholesterol": 229,
         "blood_sugar": 6.0,
-        "One-Class SVM_is_outlier": "正常",
-        "One-Class SVM_score": 3.2539,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0725,
+        "evaluation": "正常"
+      }
+    ]
+  },
+  "LOF": {
+    "model_name": "LOF",
+    "analysis_time": 9.087894678115845,
+    "outlier_count": 1790,
+    "accuracy": 0.82098,
+    "f1_score": 0.07588271732397274,
+    "clinical_plausible": 22,
+    "clinical_implausible": 1768,
+    "detailed_results": [
+      {
+        "patient_id": "P1",
+        "age": 30,
+        "sex": "男",
+        "blood_pressure": 120,
+        "cholesterol": 180,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1045,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P2",
+        "age": 31,
+        "sex": "女",
+        "blood_pressure": 121,
+        "cholesterol": 181,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0845,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P3",
+        "age": 32,
+        "sex": "男",
+        "blood_pressure": 122,
+        "cholesterol": 182,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0767,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P4",
+        "age": 33,
+        "sex": "女",
+        "blood_pressure": 123,
+        "cholesterol": 183,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0777,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P5",
+        "age": 34,
+        "sex": "男",
+        "blood_pressure": 124,
+        "cholesterol": 184,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0924,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P6",
+        "age": 35,
+        "sex": "女",
+        "blood_pressure": 125,
+        "cholesterol": 185,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.105,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P7",
+        "age": 36,
+        "sex": "男",
+        "blood_pressure": 126,
+        "cholesterol": 186,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0859,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P8",
+        "age": 37,
+        "sex": "女",
+        "blood_pressure": 127,
+        "cholesterol": 187,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0524,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P9",
+        "age": 38,
+        "sex": "男",
+        "blood_pressure": 128,
+        "cholesterol": 188,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0279,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P10",
+        "age": 39,
+        "sex": "女",
+        "blood_pressure": 129,
+        "cholesterol": 189,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0808,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P11",
+        "age": 40,
+        "sex": "男",
+        "blood_pressure": 130,
+        "cholesterol": 190,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0939,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P12",
+        "age": 41,
+        "sex": "女",
+        "blood_pressure": 131,
+        "cholesterol": 191,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0831,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P13",
+        "age": 42,
+        "sex": "男",
+        "blood_pressure": 132,
+        "cholesterol": 192,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0883,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P14",
+        "age": 43,
+        "sex": "女",
+        "blood_pressure": 133,
+        "cholesterol": 193,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0618,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P15",
+        "age": 44,
+        "sex": "男",
+        "blood_pressure": 134,
+        "cholesterol": 194,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0301,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P16",
+        "age": 45,
+        "sex": "女",
+        "blood_pressure": 135,
+        "cholesterol": 195,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0622,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P17",
+        "age": 46,
+        "sex": "男",
+        "blood_pressure": 136,
+        "cholesterol": 196,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0416,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P18",
+        "age": 47,
+        "sex": "女",
+        "blood_pressure": 137,
+        "cholesterol": 197,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P19",
+        "age": 48,
+        "sex": "男",
+        "blood_pressure": 138,
+        "cholesterol": 198,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0276,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P20",
+        "age": 49,
+        "sex": "女",
+        "blood_pressure": 139,
+        "cholesterol": 199,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0412,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P21",
+        "age": 50,
+        "sex": "男",
+        "blood_pressure": 140,
+        "cholesterol": 200,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1095,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P22",
+        "age": 51,
+        "sex": "女",
+        "blood_pressure": 141,
+        "cholesterol": 201,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0357,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P23",
+        "age": 52,
+        "sex": "男",
+        "blood_pressure": 142,
+        "cholesterol": 202,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0503,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P24",
+        "age": 53,
+        "sex": "女",
+        "blood_pressure": 143,
+        "cholesterol": 203,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0467,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P25",
+        "age": 54,
+        "sex": "男",
+        "blood_pressure": 144,
+        "cholesterol": 204,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0802,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P26",
+        "age": 55,
+        "sex": "女",
+        "blood_pressure": 145,
+        "cholesterol": 205,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.053,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P27",
+        "age": 56,
+        "sex": "男",
+        "blood_pressure": 146,
+        "cholesterol": 206,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0532,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P28",
+        "age": 57,
+        "sex": "女",
+        "blood_pressure": 147,
+        "cholesterol": 207,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "离群值",
+        "Isolation Forest_score": -0.002,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P29",
+        "age": 58,
+        "sex": "男",
+        "blood_pressure": 148,
+        "cholesterol": 208,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P30",
+        "age": 59,
+        "sex": "女",
+        "blood_pressure": 149,
+        "cholesterol": 209,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0565,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P31",
+        "age": 60,
+        "sex": "男",
+        "blood_pressure": 120,
+        "cholesterol": 210,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0865,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P32",
+        "age": 61,
+        "sex": "女",
+        "blood_pressure": 121,
+        "cholesterol": 211,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0644,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P33",
+        "age": 62,
+        "sex": "男",
+        "blood_pressure": 122,
+        "cholesterol": 212,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P34",
+        "age": 63,
+        "sex": "女",
+        "blood_pressure": 123,
+        "cholesterol": 213,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.065,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P35",
+        "age": 64,
+        "sex": "男",
+        "blood_pressure": 124,
+        "cholesterol": 214,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0716,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P36",
+        "age": 65,
+        "sex": "女",
+        "blood_pressure": 125,
+        "cholesterol": 215,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0799,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P37",
+        "age": 66,
+        "sex": "男",
+        "blood_pressure": 126,
+        "cholesterol": 216,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P38",
+        "age": 67,
+        "sex": "女",
+        "blood_pressure": 127,
+        "cholesterol": 217,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0294,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P39",
+        "age": 68,
+        "sex": "男",
+        "blood_pressure": 128,
+        "cholesterol": 218,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0773,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P40",
+        "age": 69,
+        "sex": "女",
+        "blood_pressure": 129,
+        "cholesterol": 219,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0427,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P41",
+        "age": 30,
+        "sex": "男",
+        "blood_pressure": 130,
+        "cholesterol": 220,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0491,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P42",
+        "age": 31,
+        "sex": "女",
+        "blood_pressure": 131,
+        "cholesterol": 221,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P43",
+        "age": 32,
+        "sex": "男",
+        "blood_pressure": 132,
+        "cholesterol": 222,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0402,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P44",
+        "age": 33,
+        "sex": "女",
+        "blood_pressure": 133,
+        "cholesterol": 223,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0973,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P45",
+        "age": 34,
+        "sex": "男",
+        "blood_pressure": 134,
+        "cholesterol": 224,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0327,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P46",
+        "age": 35,
+        "sex": "女",
+        "blood_pressure": 135,
+        "cholesterol": 225,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0819,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P47",
+        "age": 36,
+        "sex": "男",
+        "blood_pressure": 136,
+        "cholesterol": 226,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P48",
+        "age": 37,
+        "sex": "女",
+        "blood_pressure": 137,
+        "cholesterol": 227,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1007,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P49",
+        "age": 38,
+        "sex": "男",
+        "blood_pressure": 138,
+        "cholesterol": 228,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0486,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P50",
+        "age": 39,
+        "sex": "女",
+        "blood_pressure": 139,
+        "cholesterol": 229,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0725,
+        "evaluation": "正常"
+      }
+    ]
+  },
+  "One-Class SVM": {
+    "model_name": "One-Class SVM",
+    "analysis_time": 276.96420192718506,
+    "outlier_count": 902,
+    "accuracy": 0.82596,
+    "f1_score": 0.05842891149101926,
+    "clinical_plausible": 9,
+    "clinical_implausible": 893,
+    "detailed_results": [
+      {
+        "patient_id": "P1",
+        "age": 30,
+        "sex": "男",
+        "blood_pressure": 120,
+        "cholesterol": 180,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1045,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P2",
+        "age": 31,
+        "sex": "女",
+        "blood_pressure": 121,
+        "cholesterol": 181,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0845,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P3",
+        "age": 32,
+        "sex": "男",
+        "blood_pressure": 122,
+        "cholesterol": 182,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0767,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P4",
+        "age": 33,
+        "sex": "女",
+        "blood_pressure": 123,
+        "cholesterol": 183,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0777,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P5",
+        "age": 34,
+        "sex": "男",
+        "blood_pressure": 124,
+        "cholesterol": 184,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0924,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P6",
+        "age": 35,
+        "sex": "女",
+        "blood_pressure": 125,
+        "cholesterol": 185,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.105,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P7",
+        "age": 36,
+        "sex": "男",
+        "blood_pressure": 126,
+        "cholesterol": 186,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0859,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P8",
+        "age": 37,
+        "sex": "女",
+        "blood_pressure": 127,
+        "cholesterol": 187,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0524,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P9",
+        "age": 38,
+        "sex": "男",
+        "blood_pressure": 128,
+        "cholesterol": 188,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0279,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P10",
+        "age": 39,
+        "sex": "女",
+        "blood_pressure": 129,
+        "cholesterol": 189,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0808,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P11",
+        "age": 40,
+        "sex": "男",
+        "blood_pressure": 130,
+        "cholesterol": 190,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0939,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P12",
+        "age": 41,
+        "sex": "女",
+        "blood_pressure": 131,
+        "cholesterol": 191,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0831,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P13",
+        "age": 42,
+        "sex": "男",
+        "blood_pressure": 132,
+        "cholesterol": 192,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0883,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P14",
+        "age": 43,
+        "sex": "女",
+        "blood_pressure": 133,
+        "cholesterol": 193,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0618,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P15",
+        "age": 44,
+        "sex": "男",
+        "blood_pressure": 134,
+        "cholesterol": 194,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0301,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P16",
+        "age": 45,
+        "sex": "女",
+        "blood_pressure": 135,
+        "cholesterol": 195,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0622,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P17",
+        "age": 46,
+        "sex": "男",
+        "blood_pressure": 136,
+        "cholesterol": 196,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0416,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P18",
+        "age": 47,
+        "sex": "女",
+        "blood_pressure": 137,
+        "cholesterol": 197,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P19",
+        "age": 48,
+        "sex": "男",
+        "blood_pressure": 138,
+        "cholesterol": 198,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0276,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P20",
+        "age": 49,
+        "sex": "女",
+        "blood_pressure": 139,
+        "cholesterol": 199,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0412,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P21",
+        "age": 50,
+        "sex": "男",
+        "blood_pressure": 140,
+        "cholesterol": 200,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1095,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P22",
+        "age": 51,
+        "sex": "女",
+        "blood_pressure": 141,
+        "cholesterol": 201,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0357,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P23",
+        "age": 52,
+        "sex": "男",
+        "blood_pressure": 142,
+        "cholesterol": 202,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0503,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P24",
+        "age": 53,
+        "sex": "女",
+        "blood_pressure": 143,
+        "cholesterol": 203,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0467,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P25",
+        "age": 54,
+        "sex": "男",
+        "blood_pressure": 144,
+        "cholesterol": 204,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0802,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P26",
+        "age": 55,
+        "sex": "女",
+        "blood_pressure": 145,
+        "cholesterol": 205,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.053,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P27",
+        "age": 56,
+        "sex": "男",
+        "blood_pressure": 146,
+        "cholesterol": 206,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0532,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P28",
+        "age": 57,
+        "sex": "女",
+        "blood_pressure": 147,
+        "cholesterol": 207,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "离群值",
+        "Isolation Forest_score": -0.002,
+        "evaluation": "需要进一步检查"
+      },
+      {
+        "patient_id": "P29",
+        "age": 58,
+        "sex": "男",
+        "blood_pressure": 148,
+        "cholesterol": 208,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P30",
+        "age": 59,
+        "sex": "女",
+        "blood_pressure": 149,
+        "cholesterol": 209,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0565,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P31",
+        "age": 60,
+        "sex": "男",
+        "blood_pressure": 120,
+        "cholesterol": 210,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0865,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P32",
+        "age": 61,
+        "sex": "女",
+        "blood_pressure": 121,
+        "cholesterol": 211,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0644,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P33",
+        "age": 62,
+        "sex": "男",
+        "blood_pressure": 122,
+        "cholesterol": 212,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0721,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P34",
+        "age": 63,
+        "sex": "女",
+        "blood_pressure": 123,
+        "cholesterol": 213,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.065,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P35",
+        "age": 64,
+        "sex": "男",
+        "blood_pressure": 124,
+        "cholesterol": 214,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0716,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P36",
+        "age": 65,
+        "sex": "女",
+        "blood_pressure": 125,
+        "cholesterol": 215,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0799,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P37",
+        "age": 66,
+        "sex": "男",
+        "blood_pressure": 126,
+        "cholesterol": 216,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P38",
+        "age": 67,
+        "sex": "女",
+        "blood_pressure": 127,
+        "cholesterol": 217,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0294,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P39",
+        "age": 68,
+        "sex": "男",
+        "blood_pressure": 128,
+        "cholesterol": 218,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0773,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P40",
+        "age": 69,
+        "sex": "女",
+        "blood_pressure": 129,
+        "cholesterol": 219,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0427,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P41",
+        "age": 30,
+        "sex": "男",
+        "blood_pressure": 130,
+        "cholesterol": 220,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0491,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P42",
+        "age": 31,
+        "sex": "女",
+        "blood_pressure": 131,
+        "cholesterol": 221,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1036,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P43",
+        "age": 32,
+        "sex": "男",
+        "blood_pressure": 132,
+        "cholesterol": 222,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0402,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P44",
+        "age": 33,
+        "sex": "女",
+        "blood_pressure": 133,
+        "cholesterol": 223,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0973,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P45",
+        "age": 34,
+        "sex": "男",
+        "blood_pressure": 134,
+        "cholesterol": 224,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0327,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P46",
+        "age": 35,
+        "sex": "女",
+        "blood_pressure": 135,
+        "cholesterol": 225,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0819,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P47",
+        "age": 36,
+        "sex": "男",
+        "blood_pressure": 136,
+        "cholesterol": 226,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0473,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P48",
+        "age": 37,
+        "sex": "女",
+        "blood_pressure": 137,
+        "cholesterol": 227,
+        "blood_sugar": 7.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.1007,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P49",
+        "age": 38,
+        "sex": "男",
+        "blood_pressure": 138,
+        "cholesterol": 228,
+        "blood_sugar": 5.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0486,
+        "evaluation": "正常"
+      },
+      {
+        "patient_id": "P50",
+        "age": 39,
+        "sex": "女",
+        "blood_pressure": 139,
+        "cholesterol": 229,
+        "blood_sugar": 6.0,
+        "Isolation Forest_is_outlier": "正常",
+        "Isolation Forest_score": 0.0725,
         "evaluation": "正常"
       }
     ]
